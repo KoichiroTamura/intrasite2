@@ -1,0 +1,10 @@
+
+
+<% # detail of enrollment（配属希望届け） %>
+
+<%= render :partial => "shared/history/valid_span" %><%= button_to_history %>
+
+<table class="user_info_detail_link_table">
+    <%= render_entity_items @entity, @def_items, @detail_items, :prompt => true, :detail => true %>
+</table>
+

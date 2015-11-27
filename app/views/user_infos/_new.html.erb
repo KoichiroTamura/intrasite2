@@ -1,0 +1,10 @@
+  
+	<% title = (admin? ? "管理者による" : "") + (@user_info.new_record? ? "新ユーザ情報作成" : "ユーザ情報更新") %>
+ 
+	<h3 class="title"><%= title %></h3>
+
+	<% universal_remote_form_for @user_info do |form| %>
+		<%= render_form_items form %>
+		<%= form.submit '実行する' %>
+	<% end %>
+

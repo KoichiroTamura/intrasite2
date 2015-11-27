@@ -1,0 +1,8 @@
+<% # preamble for thesis collection %>
+
+<% if @presentation_entity # presentation_schedule is specified %>
+   <br /><br />
+   <%= "日時と場所　　#{@presentation_entity.date.to_s(:db)} #{render_time_without_date(@presentation_entity.start_time)} ：　#{@presentation_entity.place}"%>
+   <br /><br />
+   
+<% end %>

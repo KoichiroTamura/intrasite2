@@ -1,0 +1,39 @@
+<% # seminar enrollment detail %>
+
+<% if allow_to_display_enrollment?(enrollment) %>
+<div entity_id = "<%= enrollment.to_param%>" >
+	<%= validity_error_holder :base %>
+	
+	<table class="">
+		<thead>
+		    <tr>
+		        <td class="td1"><%= render_accept_button(enrollment) %></td>
+		        <td class="td2" >
+		        	<%= user_info_detail_link( enrollment.student)  %>
+				    <%= button_to_function "希望理由", "this.up('thead').next().toggle()" %> 
+		        </td>
+		    </tr>
+		</thead>
+		<tbody style = "display:none">
+		    <tr>
+		        <td colspan = 2 >
+		        	<%= enrollment.reason%>
+		        </td>
+		    </tr>
+			
+		    <tr>
+		        <td colspan = 2 >
+		        	<% if allow_to_modify_enrollment?(enrollment) %>
+		        		<%= link_to_updating(enrollment) %>
+					<br />
+					<% end %>
+					<% if admin? || allow_to_modify_enrollment?(enrollment) %>
+						<%= link_to_deleting(enrollment) %>
+					<% end %>
+		        </td>
+		    </tr>
+			
+		</tbody>
+	</table>
+</div>
+<% end %>

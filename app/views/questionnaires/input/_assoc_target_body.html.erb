@@ -1,0 +1,51 @@
+<% # render body of questionnaire assoc_target of questionnairbale entity %>
+
+
+<% questionnaire = assoc_target%>
+
+<%= form.hidden_field :_states_to_be_locked %>
+
+<% template_id = random_id 
+   base_div_id = options[:base_div_id]
+   counter_class = base_div_id + "_counter" 
+   counter_sibling_class = counter_class + "_sibling"
+%>
+
+<table id =  "<%='question'+ template_id %>" >
+	<tr>
+		<td colspan="2" class="db_cell">
+			<div class="que-box">
+				問い<%= form.text_field :question_no, :class => counter_sibling_class, :size => 3, :readonly => true %>
+				<%= form.hidden_field :question_type, :class => "hidden_question_type" %>
+				<%= form.text_area :question, :rows => 5, :cols => 50 %>
+			    <div class="question">
+			   	  <label><%= form.check_box :necessary, {}, "yes", "no" %>「回答必須」とする</label>
+				  <label>配点：<%= form.text_field :correct_answer_point %></label>
+				</div>
+				
+			    <div id="<%= template_id %>"  class="answer">
+			    	 <span>回答方式は？</span>
+					 <%= validity_error_holder :question_type %>
+					 <label><%= link_to_function "単一選択" do |page|
+	                       page['question'+ template_id].adjacent('.hidden_question_type').last.value = "radio"
+	                       page[template_id].replace_html :partial => "questionnaires/input/multiple_choice_type",
+	                                              :locals  => {:form => form, :question_type => "radio"}
+	                     end %>
+					 </label>
+					 <label><%= link_to_function "複数選択" do |page|
+	                       page['question'+ template_id].adjacent('.hidden_question_type').last.value = "checkbox"
+	                       page[template_id].replace_html :partial => "questionnaires/input/multiple_choice_type",
+	                                              :locals => {:form => form, :question_type => "checkbox"} 
+	                     end %>
+					 </label>
+					 <label><%= link_to_function "自由記入" do |page|
+	                       page['question'+ template_id].adjacent('.hidden_question_type').last.value = "textarea"
+	                       page[template_id].replace_html :partial => "questionnaires/input/textarea_type",
+	                                              :locals => {:form => form} 
+	                     end %>
+					 </label>
+				</div>
+		 </div>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,16 @@
+<% # list of reports for @exercise of lecture	
+%>
+
+		<h2 >提出レポート一覧</h2>	
+		<h3>課題名：<%=h @exercise.title %></h3>
+		<br /><br />
+		<div class="report_input_form">
+			<form id="search">			
+				<%= render_query_bar  %>
+			    <%= hidden_field_tag "exercise_id", @exercise.to_param %>
+			</form>
+		</div>
+		<br /><br />
+		<%= observe_search %>
+		
+		<%= render_collection %>

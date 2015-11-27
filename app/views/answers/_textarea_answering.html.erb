@@ -1,0 +1,6 @@
+<% # form for textarea answer_responder queestionnaire %>
+
+<% fields_for prefix, answer, :index => answer.to_param do |form| %>
+   <%= form.hidden_field :questionnaire_run_id %>
+   <%= form.text_area :answer %>
+<% end %>

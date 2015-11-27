@@ -1,0 +1,10 @@
+<% # link to thesis_introduction
+   # this template shall be relaoded when acedemic_year setting changed.%>
+
+<div id = "link_to_thesis_introduction" >
+  <% if registered? -%>
+	<%= link_to "卒論・修論要旨の作成要領へ", 
+                   thesis_introductions_path(:academic_year => @academic_year, :layout => "base_layout" ), 
+	               {:target => "_new", :class => "link_a"}%>
+  <% end -%>
+</div>

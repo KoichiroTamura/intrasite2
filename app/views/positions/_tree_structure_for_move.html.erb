@@ -1,0 +1,25 @@
+<% # tree structure for pointing node to move %>
+    
+    <% fullname = @moving ? @moving.fullname : nil %>
+	<div id = "position_tree_structure_for_move" class="position_tree_structure">
+		<h3>移動するノードを指定</h3>
+	    <form id="search_for_move">
+			<div class = "aff_and_sta_tree">
+				<div id="div_affiliation_for_move">
+					<h3 class="title_h3">所属</h3>
+				    <%= render_tree_structure( Affiliation.tree_root, fullname, :radio_name => "moving" )%>
+				</div>
+				<br />
+				<div id="div_status_for_move">
+					<h3 class="title_h3">ステータス</h3>
+					<%= render_tree_structure( Status.tree_root, fullname, :radio_name => "moving" )%>
+				</div>
+				<br />
+				<div id="div_space_for_move">
+					<h3 class="title_h3">スペース</h3>
+					<%= render_tree_structure( Space.tree_root, fullname, :radio_name => "moving" )%>
+				</div>
+			</div>   
+	    </form>
+		<%= observe_form "search_for_move", :url => {:action => "search_for_move"} %>
+    </div>

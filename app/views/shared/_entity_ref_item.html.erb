@@ -1,0 +1,12 @@
+<% # for showing item of entity_ref %>
+	<% (item = def_items[entity_ref_item]) or fail "'#{entity_item}' is not defined in def_items."  %>
+	
+	<% if options[:detail] %><tr><% end %>
+	
+	<% if options[:prompt] %>
+	   <th><%= item.view_name %></th>
+	<% end %>
+
+	<%= content_tag :td, render_entity_ref_item( entity_ref, item ), item.html_options %>
+	
+	<% if options[:detail] %></tr><% end %>

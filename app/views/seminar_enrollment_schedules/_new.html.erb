@@ -1,0 +1,10 @@
+<% # seminar_enrollment_schedule new form %>
+
+<h3 class="title"><%= @seminar_enrollment_schedule.new_record? ? "ゼミ登録スケジュール新項目作成" : "ゼミ登録スケジュール修正" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @seminar_enrollment_schedule do |form| %>
+	  <%= render_form_items form, @def_form_items, @form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

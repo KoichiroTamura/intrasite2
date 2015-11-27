@@ -1,0 +1,25 @@
+<% # input select set elements 
+   # locals
+   #   form  => form of input
+   #   method => method to object
+   #   (the value = selected_elements  => selected elements of set expressed by string with separetor ",")
+   #   set  => set(array) of elements to be selected
+   #   selected_elements_div_id => id of div for setting selected_elements as its value. 
+   
+   selected_elements = form.object.send(method)
+   selected_set = selected_elements ? selected_elements.split(',').map(&:strip) : []
+   selected_elements_div_id ||= "selected_elements"
+%>
+   <% # CAUTION: if html element id ("element" in this case) is not ASCII string, its rendering is possibly failed. %>
+   <% index = 0 %>
+   <% set.each do |element| %>
+      <% element_id = method + index.to_s%>
+      <%= check_box_tag( element, 1, selected_set.include?(element), :id => element_id,
+                         :onchange => change_selected_elements(element, selected_elements_div_id) ) %>
+	  <%= label_tag( element_id, element ) %>
+	  <% index += 1 %>
+   <% end -%>
+   
+   <%= form.hidden_field method, :id => selected_elements_div_id %>
+
+   

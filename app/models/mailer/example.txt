@@ -1,0 +1,21 @@
+class Mailer::Example
+  require "jcode"
+  def self.index
+    m = Mailer::Send.new
+    m.server = "dell.private.minfo-rela.net"
+    m.to="toshy@dell.private.minfo-rela.net"
+    m.from="sys@dell.private.minfo-rela.net"
+    m.host_name="fmv.dell.private.minfo-rela.net"
+    m.subject="IntraSite パスワード設定の確認"
+    m.body_with_template_file("template_password_missing",{:user_name=>"テスト",:auth_code=>"Test"})
+    m.send
+    
+    r = Mailer::Receive.new
+    r.server = "dell.private.minfo-rela.net"
+    r.pop_auth_login_info=({:user=>"toshy",:password=>"ktns1740"})
+    r.mail_delete
+    r.receive
+    r.mails_rows
+    r.mails
+  end
+end

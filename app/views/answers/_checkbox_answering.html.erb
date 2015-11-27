@@ -1,0 +1,14 @@
+<% # form for checkbox answer_responder queestionnaire %>
+
+
+<% fields_for prefix, answer, :index => answer.to_param do |form| %>
+	<%  i = 0 %>	  
+	<% options.each do |option|%>
+	   <% i += 1 %>
+	   <%= check_box_tag "checkbox_option", 1, false, :onchange => change_checkbox_option(i, "checkbox_options_value") %><%= option %>
+	<% end%>
+	
+	<%= form.hidden_field :questionnaire_run_id %>
+	<%= form.hidden_field :answer, :id => "checkbox_options_value" %>
+<% end %>
+

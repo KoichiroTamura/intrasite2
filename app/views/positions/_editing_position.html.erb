@@ -1,0 +1,42 @@
+<h3>新規追加，削除，または名称変更</h3>
+
+<table class="op-table">
+	<caption>左の木構造のノードを選択し，それについて変更を指示する．</caption>
+    <tr>
+        <td>
+        	<% # （直前に）追加実行　%>
+			<%= render :partial => "updating_position", :locals => {:entity => @pred, :text => "上に追加" } %>
+        </td>
+    </tr>
+    <tr>
+        <td id="editing_target_node"  style="background: #e3eeff">
+
+	        	<% # （自身の）更新実行　%>
+			    <%= render :partial => "updating_position", :locals => {:entity => @position, :text => "名称に変更"} %>
+				
+				<% # 削除実行 %>
+				<span id="deleting_position">
+				   <%= render :partial => "deleting_position", :locals => {:entity => @position} %>
+				</span>
+         </td>
+	</tr>
+	<% if @position.blank? || @position.children.blank? %>
+		<tr>
+			<td>				
+				<ul style="list-style-type: none">
+					<li>
+						<% # 自身の子作成実行%>
+						<%= render :partial => "updating_position", :locals => {:entity => @child, :text => "子として追加"} %>
+					</li>
+				</ul>
+	        </td>
+	    </tr>
+	<% end -%>
+    <tr>
+        <td>
+        	<% # （直後に）追加実行　%>
+			<%= render :partial => "updating_position", :locals => {:entity => @succ, :text => "下に追加" } %>
+        </td>
+    </tr>
+</table>
+

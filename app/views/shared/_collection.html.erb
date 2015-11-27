@@ -1,0 +1,30 @@
+<% # shared collection part %>
+
+<%  # setting default options; necessary here for local variables. 
+    # when :locals hash given indirectly, those are regarded as undefined instead of nil.
+    # in Ruby, "undefined" is regarded as false.
+
+   collection ||= @collection        # collection of entities to list up
+   controller ||= controller_name    # controller 
+
+   text_for_adding_new ||= "新規追加"
+   div_id     ||= "collection"        # div id for collection part
+%>
+
+<div id = "<%= div_id %>" >
+	
+	<% # only when authentic collection (listing) %>
+    <%= div_id == "collection" ? render(:partial => "shared/flash_notice") : nil%>
+	
+    <%= remote_link_to_new(text_for_adding_new, :controller => controller)  %>
+	
+	
+    <% # working space for collection, detail, history, input form and the confirmation %>
+	<%= render_collection_only collection, @collection_options %>
+	
+    
+	 <div id = "back_to_list" style = "display:none">
+	    <%= back_to_list %>
+	 </div>
+    
+</div>

@@ -1,0 +1,13 @@
+<% # for syllabus_book (text books and reference books) %>
+<% def_items = @def_syllabus_book_items %>
+<% # items = [:book_type, :title, :isbn, :isbn10, :isbn13] %>
+
+<tr>
+  	<td>
+  		<b><%= render_entity_item(entity, def_items[:book_type]) %>:</b>
+		<%= render_entity_item(entity, def_items[:title]) %>
+		<%= "　<em><b>ISBN:</b></em>　" + render_entity_item(entity, def_items[:isbn])       unless entity.isbn.blank? %>
+		<%= "　<em><b>ISBN10:</b></em>　" + render_entity_item(entity, def_items[:isbn10])   unless entity.isbn10.blank?  %>
+		<%= "　<em><b>ISBN13:</b></em>　" + render_entity_item(entity, def_items[:isbn13])   unless entity.isbn13.blank?  %>
+	</td>
+</tr>

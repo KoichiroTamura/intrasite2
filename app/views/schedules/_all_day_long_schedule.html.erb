@@ -1,0 +1,9 @@
+<% # all day long schedule for week and day calendar %>
+
+<% date, day_schedules = all_day_long_schedule %>
+
+		<td class="st-c">
+			<% day_schedules.each do |schedule|%>
+				<%= render :partial => "all_day_long_template", :locals => {:schedule => schedule}%>
+			<% end -%>
+		</td>

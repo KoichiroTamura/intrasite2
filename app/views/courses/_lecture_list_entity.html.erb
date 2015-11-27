@@ -1,0 +1,17 @@
+<% # for element of list of lectures to a course entity %>
+
+<% lecture = lecture_list_entity 
+   lecture = lecture.run %>
+<tr  >
+	<td class="td1">担当教員：<%= lecture.teachers.map(&:real_name).join(" ")%> </td>
+	<td class="td2">TA：    <%= lecture.tas.map(&:real_name).join(" ") %></td>
+	<td class="td3"><%= lecture.lecture_times.map(&:lecture_time_and_room).join(" ") %></td>
+	<% unless @mobile%>
+		<td class="td4"><%= call_for_detail lecture, "授業詳細", {}, {:target => "_new"} %></td>
+		<% if lecture.lecture_member? %>
+		 	<td class="td6"><%= link_to_exercise(lecture) %></td>
+			<td class="td5"><%= link_to_lecture_forum(lecture) %></td>
+			<td class="td6"><%= link_to_lecture_schedule(lecture) %></td>
+		<% end -%>
+	<% end -%>
+</tr>

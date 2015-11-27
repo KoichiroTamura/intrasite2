@@ -1,0 +1,35 @@
+<div id = "collection">
+
+	<%= link_to(image_tag("mobile/mb_title.gif",:style=>"border:0px"),"/k") %><br />
+	<%= image_tag("mobile/mb_menu_bus.gif",:style=>"border:0px") %>
+	
+	   <div class="bus_search_form">
+		  <form id = "search" >
+			<%= render :partial => 'shared/select_date', :locals => {:time => @bus_departure_time } %>
+			<%= select_tag :station, options_for_select( @departure_options, @station ) %>
+			<%= hidden_field_tag :display_mode, @display_mode%>
+			<%= hidden_field_tag :mobile, @mobile %>
+		  </form>
+	   </div>
+	   <%= observe_search %>
+	
+	
+	<%= render :partial=>"shared/flash_notice" %>
+	
+	<% if @collection %>
+		<table width="250" border="1" cellspacing="0" cellpadding="7">
+			  <tr>
+			    <th>時</th>
+			    <th>分</th>
+			  </tr>
+			
+			<% @collection.each do |bus_diagram| %>
+				  <tr>
+				    <td><%=h bus_diagram.hour %></td>
+				    <td><%=h bus_diagram.min %></td>
+				  </tr>
+			<% end %>
+		</table>
+	<% end %>
+
+</div>

@@ -1,0 +1,7 @@
+<% # for item of table head %>
+
+	<% item = def_items[head_item]; item or fail "'#{head_item}' is not defined in def_items."  %>
+	
+	<% content_tag "th", item.html_options do %>
+        <%= item.view_name %>
+	<% end %>

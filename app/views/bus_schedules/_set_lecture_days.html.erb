@@ -1,0 +1,12 @@
+<% # form for setting lecture days %>
+
+<div id = "set_lecture_days">
+	<h3 class="title">授業日の設定</h3>
+	<h4>新しいバススケジュールを入力した後，それに基づく授業日を設定するために使用する．<br />
+		バススケジュールの"holiday"がonにセットされた日を授業日とみなし，それを示すスケジュール記事を作成する</h4>
+	   
+	<% remote_form_for(@lecture_day_entity, :url => {:action => "create_lecture_days"}) do |form| %>
+		  <%= render_form_items form, @def_lecture_day_form_items, @lecture_day_form_items %>
+		  <%= submit_tag 'この期間の授業日を設定する' %>
+	<% end %>
+</div>

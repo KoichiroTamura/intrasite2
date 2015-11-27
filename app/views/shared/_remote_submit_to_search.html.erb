@@ -1,0 +1,8 @@
+<% # remote submit button to set situation 
+   # locals ...
+   #   text  name of submit button
+%>
+
+<div class="remote_submit_to_search">
+   <%= submit_to_remote "search", text, :url => {:action => "search"}%>
+</div>

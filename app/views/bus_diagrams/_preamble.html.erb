@@ -1,0 +1,17 @@
+<% # template before rendering collection of bus_diagrams  %>
+   <div class="bus_search_form">
+	  <form id = "search" >
+		<%= render :partial => 'shared/select_date', :locals => {:time => @bus_departure_time } %>
+		<%= select_tag :station, options_for_select( @departure_options, @station ) %>
+		<%= hidden_field_tag :display_mode, @display_mode%>
+	  </form>
+	</div>
+    <%= observe_search %>
+	
+	<% if admin? %>
+	    <p>
+	    	（管理者用）
+			<%= link_to_remote "運行ダイア表", :url => {:action => "search", :params => {:display_mode => "for_admin", :bus_departure_time => @bus_departure_time} } %>
+			<%= link_to "運行スケジュール表", bus_schedules_path(:bus_departure_time => @bus_departure_time) %>
+		</p>
+	<% end -%>

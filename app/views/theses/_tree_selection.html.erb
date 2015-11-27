@@ -1,0 +1,9 @@
+<% # tree selection for affiliation 
+   # this template shall be relaoded when changed.%>
+
+<div id = "tree_selection">
+	<%= render_tree_select_cluster @aff_root, @affiliation, 
+                           :tree_name => "affiliation", 
+                           :out => @out_of_selection
+	%>
+</div>

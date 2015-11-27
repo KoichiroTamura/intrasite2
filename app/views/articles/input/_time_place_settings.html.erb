@@ -1,0 +1,20 @@
+<% # render input of time_place_settings of articles %>
+
+<%= form.check_box "time_place_settings", :onclick => "$(this).next(1).toggle();" %>
+<%= form.label "time_place_settings", "予定日時（と場所）を設定"%>  
+  
+
+<% display_here = form.object.time_place_settings ? "block" : "none" -%>
+<fieldset style = "<%= "display:#{display_here};"%>>
+	<%= form.check_box "time_including_setting", :onclick => "$(this).next(1).toggle();$(this).next(2).toggle();" %>	
+	<%= form.label "time_including_setting", "（日にちだけでなく）時間も設定する"%>
+	<fieldset style = "display:block;">
+		<%= render_form_items(form, @def_article_form_items, [:start_date, :end_date]) %>
+	</fieldset>
+	<fieldset style = "display:none;">
+		<%= render_form_items(form, @def_article_form_items, [:start_datetime, :end_datetime])%>
+	</fieldset>	
+	
+	<% # render place selection %>
+	<%= render_form_items(form, @def_article_form_items, [:shared_place, :non_shared_place])%>
+</fieldset>

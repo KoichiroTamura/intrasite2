@@ -1,0 +1,9 @@
+<% # for an entity of to_group %>
+
+<% if group?(to_group.group) -%>
+	<tr>
+		<td><%= time_in_japanese_style(to_group.since, :since, :short => true) %>〜
+		<%= time_in_japanese_style(to_group.till, :till, :short => true) %> </td>
+		<td><%= group_detail_link(to_group.group) %> </td>
+	</tr>
+<% end -%>

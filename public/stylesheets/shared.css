@@ -1,0 +1,37 @@
+div#tree_selection {
+	background-color:#9Cf;
+	padding: 5px 10px;
+	font-size: 12px;
+}
+.now div#tree_selection {
+	background-color:#9Cf;
+}
+.past div#tree_selection {
+	background-color:#B8860B;
+	color: #FFF;
+}
+.future div#tree_selection {
+	background-color:#DAA520;
+}
+
+
+div.query_bar {
+	padding: 5px 10px;
+	font-size: 12px;
+}
+.now div.query_bar {
+	background-color:#6694E3;
+	color: #FFFFFF;
+}
+.past div.query_bar {
+	background-color:#808000;
+	color: #FFFFFF;
+}
+.future div.query_bar {
+	background-color:#FFD700;
+}
+
+
+div.query_bar input{
+	margin-right:10px;
+}

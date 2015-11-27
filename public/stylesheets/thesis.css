@@ -1,0 +1,54 @@
+div.theses table.collection_table tr:hover{
+	cursor: pointer;
+	background: url(../images/tr_bg_gray2.jpg) repeat;
+}
+div.theses table.collection_table tr:active{
+	cursor: pointer;
+	background: #ffd;	
+}
+
+
+
+
+div.theses table.collection_table tr._loaded_{
+	cursor: default;
+	background: none;
+}
+
+div.theses table.collection_table tr._loaded_{
+	cursor: default;
+	background: none;
+}
+div.theses table.collection_table tr._loaded_ th{
+	cursor: default;
+
+}
+div.theses table.collection_table tr._loaded_ td{
+	cursor: default;
+	background: none;
+}
+
+
+
+
+div.theses table.collection_table th {
+	width: 120px;
+	background: url(../images/tr_bg_gray2.jpg) repeat;
+	padding:15px;
+}
+
+
+tr.thesis-tbl-tr:hover {	cursor: pointer;}
+tr.thesis-tbl-tr:active {	background:url(../images/tr_bg_yellow2.jpg);}
+
+tr.thesis-tbl-tr{
+	background: url(../images/tr_back.gif) -1px 0 no-repeat;
+
+}
+tr.thesis-tbl-tr td{
+	border-left: 0px;
+	border-right: 0px;	
+	border-bottom: 2px dotted #CCC;
+	padding-left: 28px;
+}
+

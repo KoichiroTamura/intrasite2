@@ -1,0 +1,18 @@
+<% # render multiple choice type question setting 
+   # locals : form, question_type(= "radio" or "checkbox" %>
+
+
+<% prefix = prefix_for_form(form) 
+   entity_id = form.object.to_param
+%>
+
+<div class="ce option_text">
+	<%= validity_error_holder :option_text %>
+
+	<% if question_type == "radio" -%>
+        （正答を設定する場合は，その選択肢を選択する．）<br />
+	<% end -%>
+	
+	<%= link_to_function "選択肢の追加", clear_error_holder(:option_text) + "addOption(this, '#{prefix}', '#{question_type}');" %>
+	<%= link_to_function "選択肢の削除", "deleteOption(this)" %>
+</div>

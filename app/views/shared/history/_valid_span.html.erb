@@ -1,0 +1,8 @@
+<% # template for rendering valid time span 
+   # local variables : since = @entity.since, till = @entity.till %>
+
+
+<% since ||= @entity.since;  till ||= @entity.till %>
+<% since_s, till_s = [since, till].map{|t| time_in_japanese_style(t) }%>
+
+<%= infinite_past?(since) ? "" : "#{since_s}から" %><%= infinite_future?(till) ? "" : "#{till_s}まで" %>

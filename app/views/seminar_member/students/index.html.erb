@@ -1,0 +1,17 @@
+<% #------　ゼミ配属希望登録総表　-----------------------	#
+%>
+
+<h3 class="title" style="text-align:left;">ゼミ配属希望登録一覧</h3>
+
+<div id="enrollments">
+	<div>
+	  <form id = "search">
+		<%= render_query_bar %>							 	
+	  </form>
+	</div>
+	
+	<%= observe_search %>
+	
+	<%= render_collection %>
+
+</div>

@@ -1,0 +1,17 @@
+<% # day element of week element of month calendar %>
+
+<% date, day_schedules = *day_elem_of_month %>
+
+<td id="sc<%= date.day %>" class="st-c">
+	<div class="te">
+		<table style="width:100%">
+           <tbody>
+				<tr>
+					<td>						
+						<%= render :partial => "content_elem_of_month", :collection => day_schedules %>						
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</td>

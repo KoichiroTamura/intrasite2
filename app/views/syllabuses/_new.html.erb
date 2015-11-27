@@ -1,0 +1,12 @@
+<% # syllabus new form %>
+
+<% new_record = @syllabus.new_record? %>
+
+<h3 class="title"><%= new_record ? "新シラバス作成" : "シラバス更新" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @syllabus do |syllabus_form| %>
+	  <%= render_form_items syllabus_form, @def_syllabus_form_items, @syllabus_form_items %>
+	  <%= syllabus_form.submit '実行する' %>
+<% end -%>

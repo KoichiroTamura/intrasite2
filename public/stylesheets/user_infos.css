@@ -1,0 +1,112 @@
+/*  ユーザー情報詳細　ポップアップ   */
+div.user_info_detail_link h3{
+	background: url(../images/h3_under.jpg) 0 24px;
+	height: 30px;
+	color: #FFF;
+	padding: 5px 0 0 18px;
+	margin-top: -1em;
+}
+
+table.user_info_detail_link_table{
+	border: solid 1px #CCC;
+	width: 100%;
+}
+
+table.user_info_detail_link_table th{
+	border: solid 1px #999;
+	padding: 6px;
+	font-size: small;
+	text-align: left;
+	width:20%;
+}
+
+table.user_info_detail_link_table td.form_item{
+	border: solid 1px #999;
+	padding: 6px;
+}
+table.user_info_detail_link_table td:hover{
+	cursor: default;
+}
+
+
+
+
+/* フォーム */
+#user_infos .form {
+	width: 250px;
+	border: 1px solid #ccc;
+	position: relative;
+	margin: 50px 0 0 0;
+	float: left;
+} 
+
+#user_infos .form a{
+	text-decoration: none;
+} 
+
+#user_infos .form ul {
+	padding: 0 0 0 10px;
+}
+
+#user_infos .form ul li {
+	margin: 5px 0;
+	list-style: none;
+	font-size: 10pt;
+}
+
+#user_infos .form .query {
+	position: absolute;
+	width: 600px;
+	top: -50px;
+}
+
+
+/* 詳細 */
+#user_infos .detail {
+	margin: 0 0 0 260px;
+	padding: 51px 0 0 0;
+}
+
+#user_infos .detail h3{
+	background: url(../images/h3_under.jpg) 0 24px;
+	height: 30px;
+	color: #FFF;
+	padding: 5px 0 0 18px;
+}
+
+table.collection_table tr.user_info-tbl-tr:hover{
+	cursor: pointer;
+	background:url(../images/tr_bg_gray2.jpg);
+
+}
+
+
+#user_infos .detail table.collection_table,
+table.user_info_detail_link_table{
+	border-collapse: collapse;
+	border: 1px solid #999;
+}
+
+
+#article_thread_new_article_attributes___title {
+	width: 100%;
+}
+
+#user_infos .detail table.user_info_detail_link_table td{
+	border: 1px solid #999;
+	padding: 8px;
+
+}
+
+#user_infos .detail table td.form_item{
+	border: 1px solid #999;
+	padding: 8px;
+
+}
+
+#user_infos .detail h3.cursor-pointer{
+	cursor: pointer;
+}
+
+#user_infos .detail tr:hover{	cursor: pointer;}
+#user_infos .detail tr:active {	background:url(../images/tr_bg_yellow2.jpg);}

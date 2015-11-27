@@ -1,0 +1,8 @@
+<% # deleting part of position_editor %>
+<% controller = "positions" %>
+<% universal_remote_form_for entity, :url => {:controller => controller, :params => {:put_method => "delete"}}  do |form| %>
+	<%= form.hidden_field :location %>			
+    <%= datetime_select_for_since form %>から
+	<%= form.hidden_field :deleted_by %>	
+    <%= button_to_function 'X 削除実行' , "if(confirm('削除してよいですか？')){ $(this).previous().setValue(#{@current_user.run_id}); submit()} else return" %>
+<% end -%>

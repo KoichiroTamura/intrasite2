@@ -1,0 +1,20 @@
+<% # for editing self portrait by current user %>
+
+<div id = "collection">
+	
+	<div id = "working_div">		
+		<div  entity_id = "<%= @user_info.entity_id %>" >	
+			<%= validity_error_holder :base %>   
+
+			<h3>自己プロファイル更新</h3>
+			
+			<% universal_remote_form_for @user_info, :url => {:action => "update_portrait"}  do |form| %>
+				  <%= render_form_items form %>
+				  <%= form.submit '実行する' %>
+			<% end %>
+		</div>
+			
+	</div>
+</div>
+
+<%= button_to_back %>

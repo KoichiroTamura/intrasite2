@@ -1,0 +1,16 @@
+<% # updating part of position_editor 
+   # locals
+   #    entity : @position, @pred, @succ, or @child
+   #    text   : name of button to alter
+%>
+
+<% universal_remote_form_for entity, :url => {:controller => "positions"} do |form| %>
+	<%= form.hidden_field :location %>			
+    <%= datetime_select_for_since form %>から
+	<br />
+	<%= form.text_field :name %>
+	<%= select_with_default(form, :mark, Position::Marks)%>を
+	<br />
+	<%= @position.fullname %>の
+	<%= form.submit text, :onclick => "if(!confirm('#{text}を実行しますか？')) return" %>
+<% end -%>

@@ -1,0 +1,29 @@
+<%# moving part of position editor%>
+<h3>ノードの移動</h3>
+<table class="op-table">
+	<caption>移動先を与えるノードを上部左の木構造で選択し，<br />
+	         移動するノードを左の木構造で選択する．<br />
+	         ノードの子は移動に従う．
+	</caption>
+
+    <tr>
+        <td>
+        	<% if @moving -%>
+				<% universal_remote_form_for @moving, :url => {:controller => "positions"} do |form| %>
+				    <%= form.hidden_field :seq %>
+					<%= form.hidden_field :name %>
+				    <%= datetime_select_for_since form %>から
+					<br />
+					<%= @moving.fullname %>を
+					<br />
+					<%= @position.fullname %>の	
+					<%= form.radio_button :location, @pred.location %>上へ
+					<%= form.radio_button :location, @succ.location %>下へ
+					<%= form.radio_button :location, @child.location %>子へ
+					<%= form.submit "移動する", :onclick => "if(!confirm('移動を実行しますか？')) return" %>
+				<% end -%>
+			<% end -%>
+        </td>
+    </tr>
+
+</table>

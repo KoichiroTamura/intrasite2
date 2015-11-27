@@ -1,0 +1,16 @@
+<% # query diviision; to be reloaded when academic season changed %>
+		<div class="query-window" id = "query_div">
+			<% # inherit parameters %>
+		    <%= hidden_field_tag :degree,  @degree %>
+		
+			<%= render :partial => "depending_on_academic_season" %>
+										
+			<%= render_query_bar %>
+			
+			<div class="courses_select">
+			  	<%= radio_button_tag "display_mode", "list", @display_mode == "list" %> 一覧表示
+				<%= radio_button_tag "display_mode", "lecture_schedule" , @display_mode != "list" %> 時間割表示
+					<%= local_information @lec_schedule_local_info %>
+			</div>
+		</div>
+		

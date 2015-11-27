@@ -1,0 +1,39 @@
+<% # render an assoc_target to put %>
+<% # locals...
+   #   assoc_target, prefix, assoc_name, options 
+   # assoc_name is added to prefix so that setter method for association works.%>
+   
+<% assoc_target_body_template = options[:assoc_target_body_template] %>
+
+<% base_div_id = options[:base_div_id] 
+   counter_class = base_div_id + "_counter" 
+   counter_sibling_class = counter_class + "_sibling"
+   legend = options[:legend] 
+   %>
+
+<% fields_for prefix, assoc_target, :index => assoc_target.to_param  do |form| -%>        			
+	    <% # mark disconnection of this assoc_target %>
+        <%= form.hidden_field :_assoc_deleted_, :class => "deletion_mark_field" unless assoc_target.new_record? %>
+		
+		<% # real body of assoc target with legend %>
+		<div class="<%= assoc_name %>">
+			<%= validity_error_holder(:base) %>
+		  	<fieldset>
+		  	  	<%= form.hidden_field :seq, :class => counter_class  %>
+				<legend>
+				      <%= legend %>＃<%= text_field_tag  "counter", "", :class => counter_sibling_class, :size => 3, :disabled => true%>
+					  <% button_text = assoc_target.new_record? ? "消去" : "分離"%>
+				      <%= button_to_delete_assoc_target(button_text + "する X", assoc_target, assoc_name, options, {:class => "x-button"}) %> 
+		   		</legend>
+			
+				<%= render :partial => assoc_target_body_template, 
+		                   :locals => {:form => form, 
+		                               :prefix => prefix,
+		                               :assoc_target => assoc_target, 
+		                               :assoc_name => assoc_name, 
+		                               :options => options} %>
+		
+		  	</fieldset>
+		</div>
+
+<% end -%>

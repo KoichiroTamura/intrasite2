@@ -1,0 +1,13 @@
+<% # render run history --- standard version
+   # @entity is a base state of run of which history is being given.
+   # see helper "render_collection" for details of required locals, especially "def_items" in /history_item.
+%>
+
+<div>
+	<%= render_collection_only @collection,
+                          :entity_template => (@entity_template || "shared/history/state"),
+	                      :table_header    => "shared/history/history_item",
+                          :div_id          => "history"
+	%>
+
+ 

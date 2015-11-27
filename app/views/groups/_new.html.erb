@@ -1,0 +1,12 @@
+<% # group new form %>
+
+<% new_record = @group.new_record? %>
+
+<h3 class="title"><%= new_record ? "新グループ作成" : "グループ更新" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @group do |group_form| %>
+	  <%= render_form_items group_form %>
+	  <%= group_form.submit '実行する' %>
+<% end %>

@@ -1,0 +1,6 @@
+<% # header of history table %>
+
+<% (item = def_items[history_item]) or fail "no definition for item '#{history_item}' in history_item" %>
+<th>
+	<%= def_items[history_item].view_name %>
+</th>

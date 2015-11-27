@@ -1,0 +1,11 @@
+<% # main view when show time is set back to current %>
+
+<div class="change_show_time_info1">
+	<h2 class="change_show_time_h2">システム表示日時が「実現在」時間．</h2>
+	<span class="change_show_time_time"><%= time_in_japanese_style @real_time %></span>
+	<h2 style="color:red;margin-left:235px;">に戻されます．</h2>
+</div>
+<div class="change_show_time_info2">
+	<p>以降，メニューをはじめ，すべての表示が実現在（時とともに進む）におけるシステムの表示になります．</p>
+	<p align = "center"><%= link_to "実現在時のホームへ", :controller => "home" %></p>
+</div>

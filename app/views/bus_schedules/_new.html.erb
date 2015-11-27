@@ -1,0 +1,12 @@
+<% # bus_schedules new form %>
+
+<% new_record = @entity.new_record? %>
+
+<h3 class="title"><%= new_record ? "新規作成" : "更新" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @entity do |form| %>
+	  <%= render_form_items form, @def_form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

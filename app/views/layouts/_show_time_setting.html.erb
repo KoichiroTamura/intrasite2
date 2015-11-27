@@ -1,0 +1,63 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】for setting system show time						#
+# 【目的役割】表示日時選択タグを表示					#
+#     日時を変更した場合，:show_time_baseを変更
+#       session[:show_time_base] と　menu_clustersを書き換える．
+#     変更しない場合，show_timeは「現在」，session[:show_time_base]はnil
+# ［作成履歴］並松作成のcorner向けの初期バージョンを田村変更　2009/08/16               #
+#  　　　　大幅改訂　2009/09/17　田村
+#        大幅改訂　2010/03/22　田村　show_timeがshow_time_rateの倍速で変化する設定．
+#        改訂　　　2010/08/02　observe formではなく普通のsubmitを使用する．
+# ---------------------------------------------------------------------	# %>
+
+
+	<% if at_present? %>
+		<div class="now_div">
+			現在
+			<%= local_information("許可されたユーザに限り，表示時間を自由に変更，設定することが出来ます．")%>
+		</div>
+	<% end %>
+	
+	<% content_tag "div", :id => "show_show_time", :align => "center" do %>
+	   <%# render :partial => "layouts/show_show_time" %>
+	<% end -%>
+
+	<% if allow_to_change_show_time? %>							
+		<div id = "button_to_alter" align="center">	
+		<%= button_to_function( "変更する" )  do |page| 
+	            allow_simulation_mode?  and page[:change_simulation_mode].replace_html :partial => "layouts/simulation_mode"
+		        page[:changing_show_time].show
+                page[:button_to_alter].hide
+                page[:button_to_current].show
+		    end  
+		%>
+		<%= local_information("過去，現在，未来の任意の時点でのシステムの状態を見ることが出来ます．")%>
+	    </div>
+	<% end -%>
+
+	<div id = "changing_show_time" style = "display:<%= at_present? ? 'none' : 'block' %>;">
+		<%= form_remote_tag :id => "set_show_time_base", :url=>  {:controller => "corners", :action => "set_show_time_setting"} %>
+		   <div id = "select_show_time_base">
+			   <div align="center" style="background-color: #CCC;">基点</div>
+			   <%= render :partial => "shared/select_date", 
+				          :locals  => {:prefix => "show_time_base",
+	                                   :time   => @show_time_base,
+				                       :end_year => DateTime.now.year + 1,
+				                       :select_time => true} %>
+			</div>
+			<div align="center" style="background-color: #CCC;"><%= text_field_tag "show_time_rate", @show_time_rate, :size => 4 %>倍速</div>
+			<% if allow_simulation_mode? %>
+				<div id = "change_simulation_mode">
+					<%= render :partial =>  "layouts/simulation_mode" %>
+				</div>
+			<% end -%>
+			<p align = "center"><%= submit_tag "変更設定"%></p>		
+		</form>
+	</div>
+	
+	<% content_tag :div, :id => "button_to_current", :align => "center", :style => "display:#{at_present? ? 'none' : 'block'}" do %>
+	    <%= button_to_remote "「現在」に戻す",
+	         :url => {:controller => "corners", :action => "back_to_current"} %>
+	<% end %>
+

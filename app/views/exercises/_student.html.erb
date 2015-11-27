@@ -1,0 +1,8 @@
+<% # for element(= student) of stochastics_of_students %>
+
+<tr>
+	<td><%= user_info_detail_link(student) %></td>
+	<td><%= student.count %></td>
+	<td><%= student.sum %></td>
+	<td><%= formatting_float_number(student.average, "%.1f") %></td>
+</tr>

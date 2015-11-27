@@ -1,0 +1,17 @@
+<% # detail of report_comment(= @entity) %>
+
+<%
+#［BODYスタイル設定］
+@body_style = "defaults"
+%>
+
+<%= render :partial => "shared/flash_notice"%>
+
+     <h3>レポートコメント</h3>
+
+	<table width="600" border="1">
+        <%= render_entity_items @entity, @def_items, @detail_items, :prompt => true, :detail => true %>
+    </table>
+
+
+

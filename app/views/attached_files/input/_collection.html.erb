@@ -1,0 +1,14 @@
+<% div_id = "attached_files" %>
+<table>
+	<td>
+	<div id="attached_files">
+<% # collection of group_connection select 
+    %>
+<%  options[:collection_name] = "attached_files" %>
+
+<%= render_assoc_target_to_put collection, prefix, assoc_name,  options %>
+	  </div>
+	 </td></tr>	
+</table>			
+
+

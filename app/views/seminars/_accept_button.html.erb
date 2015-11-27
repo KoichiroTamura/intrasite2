@@ -1,0 +1,12 @@
+<% # accept button template for seminar enrollments 
+   # locals...
+   #   enrollment
+%>
+
+<% div_id = "accept_" + enrollment.to_param %>
+<% content_tag "div", :id => div_id do -%>
+	<%= button_to_function "採用する", 
+	      remote_call_for_action_on_entity(:accept, enrollment, 
+             :params => {:div_id => div_id, :locked_states => enrollment._states_to_be_locked},
+             :confirm    => "この決定は変更ができませんが，よろしいですか？") %>
+<% end -%>

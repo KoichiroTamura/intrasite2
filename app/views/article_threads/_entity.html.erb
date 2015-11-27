@@ -1,0 +1,35 @@
+<% # for an entity of article thread %>
+<% # locals : check_box_flag_form => form for label_set checkbox%>
+
+<% entity_id = entity.id 
+   star_div_id = "star_#{entity_id}"
+   read_class  = registered? && has_label?(entity.star_label_set, "read") ? "has_read" : "not_read"
+ %>
+ 
+<% content_tag :tr, :class => "pointer #{read_class}" do -%>
+	<td class="c l"><div></div></td>
+	<% # render checkbox for labeling %>
+	<% content_tag :td,   :class   => "checkbox" do -%>
+		 <%= check_box_tag "article_thread[#{entity.to_param}]", 1, @checked, :class => "flag" %>
+	<% end -%> 
+	
+	<% if registered? -%>	  
+		<% # render star %>
+		<% content_tag :td, 
+	           :class => "star", 
+	           :onclick => remote_call_for_action_on_entity(:check_star, entity, 
+	                                                        :params => {:latest_article => entity.latest_article_id, :div_id => star_div_id})  do %>
+			 <% content_tag :span, :id => star_div_id do %>
+			     <%= render :partial => "article_threads/star", :locals => {:has_star => star?(entity) } %>
+			 <% end -%>
+	    <% end -%>
+		<td class="msg-l"><%= entity.label_set %></td><% # labels name %>
+	<% end -%>
+	<td class="msg-l"><span class="t-green"><%= entity.sender_name %><%= sandwich_by_parentheses(entity.no_of_articles) %></span></td>
+	<td  <%= remote_call_for_detail( entity, :params => {:display_mode => @display_mode}) %> >
+		<h3 class="msg-title"><%= entity.title %></h3>
+    </td>
+	<td class="msg-c"> <%=h shorten(entity.content, 20) %> </td>
+	<td class="msg-r"><%=h date_format(entity.send_time.to_datetime) %></td>
+	<td class="c r"><div></div></td>
+<% end -%>

@@ -1,0 +1,14 @@
+table#syllabuse-tbl {
+	border: 1px solid #CCC;
+	width: 100%;
+
+}
+table#syllabuse-tbl td{
+	border: 1px solid #CCC;
+	padding: 4px;
+}
+table#syllabuse-tbl th{
+	border: 1px solid #CCC;
+	padding: 4px;
+	font-weight: bold;
+}

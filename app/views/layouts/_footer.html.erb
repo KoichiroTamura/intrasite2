@@ -1,0 +1,17 @@
+<% # footer in layout %>
+
+<div id="footer" >
+	<div class="copyright">
+		<address  class= cursor-pointer
+		   onclick = "this.up().next().show().visualEffect('Move', {x: 0, y: -1000, duration: 20})" >
+			Copyright &#169; 2015, Koichiro Tamura/Toshinari Naminatsu/Yuki Ishikawa/Tatsuya Onishi/Mamoru Endo/Kenji Suzuki
+		</address>
+	</div>	
+
+	<% # credit title part to be slided up %>
+	<div class = "credit-title" style="left:300px; top:-200px; z-index: 1; display:none;" >
+	    <%= render_hide_button %>
+		<%= render :partial => "layouts/credit_title" %>
+	</div>
+
+</div>

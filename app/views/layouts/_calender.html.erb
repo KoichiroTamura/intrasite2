@@ -1,0 +1,35 @@
+<%
+# カレンダーの表示部分。
+#
+# Rev  854 : 田村 : 2009-08-19 : 改訂により新規作成
+# Rev 1302 : 並松 : 2009-11-08 : 修正
+# Rev 1302 : 並松 : 2010-01-19 : 修正
+%>
+
+	<h3 onclick="$(this).next().toggle()" >カレンダー</h3>
+	<div id="dc0" style="display:block">
+		<table id="side-calendar" summary="calendar_nav">
+			<thead>
+				<tr>
+					<td id="prov"><%= link_to "<<","javascript://" %></td>
+					<th id="year_month" colspan="5">
+						<%= @show_time.year.to_s + "年"  %><%= @show_time.month.to_s + "月"  %>
+						<span style="display:none" id="cal_show_time_day"><%= @show_time.day.to_s %></span>
+					</th>
+					<td id="next"><%= link_to ">>","javascript://" %></td>
+				</tr>
+				<tr>
+					<th abbr="sun" id="sun">日</th>
+					<th abbr="mon">月</th>
+					<th abbr="tue">火</th>
+					<th abbr="wed">水</th>
+					<th abbr="thu">木</th>
+					<th abbr="fri">金</th>
+					<th abbr="sat" id="sat">土</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+
+<%= render_calendar_show_script %>

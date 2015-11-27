@@ -1,0 +1,11 @@
+<% # thesis new and updating form %>
+
+<h3 class="title"><%= @thesis.new_record? ? "論文要旨作成" : "論文要旨更新" %></h3>
+
+<br />
+
+
+<% universal_remote_form_for @thesis do |form| %>
+	  <%= render_form_items form %>
+	  <%= form.submit '実行する' %>
+<% end %>

@@ -1,0 +1,253 @@
+﻿@charset "utf-8";
+
+.mbody {
+	margin: 0;
+	padding: 0;
+	min-width: 780px;
+}
+
+.mbody blockquote {
+	border-left:2px solid #cfcfcf;padding-left:0.5em;margin-left:0.5em;color:blue
+}
+
+
+/* clearfix */
+.cf:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility:	hidden;
+}
+.cf {
+	display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html .cf {
+	height: 1%;
+}
+.cf {
+	display: block;
+}
+/* End hide from IE-mac */
+
+/* 共通で使える設定 */
+h3.title_h3 {
+	height: 30px;
+	color: #000;
+	padding: 5px 0 0 22px;
+}
+
+h2.title_h2 {
+	height: 35px;
+	color: #000;
+	padding: 5px 0 0 18px;
+}
+
+span.small {
+	font-size: 10px;
+}
+
+/* flash notice,error */
+div.flash_error{
+	background-color: #cc0000;
+	color: #fff;
+	padding:10px;
+	margin: 1em 0;
+	
+}
+
+.flash_notice {
+	padding:10px 10px 10px 30px;
+	background-color: #32cd32;
+	background-repeat: no-repeat;
+	background-position: 10px 7px;	
+	color: #fff;
+	margin: 1em 0;
+}
+
+/* simulation mode */
+div#simulation_bar {
+	background-color: #cc0000;
+	text-align: center;
+	margin-top: -22px;
+	padding: 0;
+	height: 50px;
+	
+}
+div#simulation_bar h1{
+	color: #fff;
+	margin: 0;
+	padding-top:10px;
+}
+
+div.now_div{
+	text-align: center;
+}
+
+/* head_banner ヘッダー */
+#head_banner {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	height: 30px;
+	color: #fff;
+}
+
+.now #head_banner {
+	background: #399 url(../images/header_bg.jpg) repeat-x;
+
+}
+
+
+.past #head_banner {
+	background: #399 url(../images/header_bg_past.jpg) repeat-x;
+
+}
+
+.future #head_banner {
+	background: #399 url(../images/header_bg_future.jpg) repeat-x;
+
+}
+
+
+#head_banner h1 {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	width: 150px;
+	float: left
+}
+
+#head_banner h1 a {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	display: block;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+}
+
+#head_banner h1 a img {
+	border: 0;
+}
+
+#head_banner h2 {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	float: left;
+	margin: 3px 0 0 10px;
+	padding: 3px 0 0 16px;
+	font-size: 20px;
+	background: url(../images/h2_icon.gif) no-repeat 0px 5px;
+}
+
+#head_banner ul {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	float: right;
+	list-style: none;
+	margin: 10px 10px 0 0;
+}
+
+#head_banner li {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	float: left;
+	margin: 0 5px;
+	font-size: 12px;
+}
+
+#head_banner li a {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	color: #fff;
+}
+
+
+
+
+
+div.cap {
+	text-align: right;
+	font-size: 80%;
+	color:#fff;
+	padding-right: 10px;
+}
+
+
+
+
+
+/* nav_side 左側メインメニュー */
+
+.past #show_time_setting select{
+	background-color: #808000;
+	color: #FFF;
+}
+
+.now #show_time_setting {
+
+	
+}
+
+.future #show_time_setting select {
+	background-color: gold;
+	
+}
+
+
+
+
+/* contents 右側コンテンツ部分 */
+#main_side {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0;
+	width: auto;
+	margin: 10px 10px 10px 170px;
+	border: 0px solid #ccc;
+}
+
+
+
+/* change show time */
+h2.change_show_time_h2 {
+	color:red;
+	background-image: url("/images/info_ico.gif");
+	background-repeat: no-repeat;
+	padding:0 0 4px 30px;
+}
+
+span.change_show_time_time{
+	font-weight: bold;
+	margin: 15px 0px 25px 60px;
+	padding: 5px 25px 5px 25px;
+	border-bottom: double 4px #CCC;
+}
+
+div.change_show_time_info1{
+	margin: 10px 0 0 100px;
+
+}
+div.simulation_info1{
+	margin: 10px 0 0 20px;
+
+}
+
+
+div.change_show_time_info2{
+	margin: 20px 0 0 5px;
+	border: double 4px #CCC;
+	padding: 10px;
+	width: 680px;
+	font-size:95%;
+	font-weight:bold;
+}
+
+

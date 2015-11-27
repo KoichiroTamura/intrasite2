@@ -1,0 +1,18 @@
+<% # @controller_name_to_delete can be given in "prepare_for_deleting" method. %>
+
+	<% controller ||= @controller_name_to_delete ||  @entity.controller_name %>
+
+	<% universal_remote_form_for @entity, :url => {:controller => controller, 
+	                                               :params => {:put_method => "delete",
+	                                                           :background_params => @background_params}} do |form|%>
+		  <% if @time_to_delete # time to delete is given %>
+			  <% form.object.since = @time_to_delete # set given deleting time %>
+			  <%= datetime_select_for_since(form) %>
+		  <% else # time to delete is default %>
+		  		実行時
+		  <% end %>
+		  より
+		  <% form.object.deleted_by = @current_user.run_id %>
+		  <%= form.hidden_field :deleted_by %>	
+	      <%= submit_tag '削除実行' %>
+	<% end %>

@@ -1,0 +1,35 @@
+<% # answer_responder form template as special article responder of article_thread %>
+
+<% controller = "article_threads"
+ %>
+ 
+<% universal_remote_form_for @thread, :url => {:controller => controller}   do |form| %>
+    	<% prefix = prefix_for_form(form)%>
+		<% fields_for prefix + "[articles]", @answer_responder, :index => @answer_responder.to_param do |answer_form| %>
+		    <% @answer_responder_form_items.each do |item| %>
+				<%= answer_form.hidden_field item %>
+			<% end %>
+			<% destination = @answer_responder.to_individuals.first # destination of answer is only sender of questionnaire %>
+			<% prefix_for_destination = prefix_for_form(answer_form) + "[to_individuals]" %>
+			<% fields_for prefix_for_destination, destination, :index => destination.to_param do |destination_form| %>
+			     <%= destination_form.hidden_field :user_info_run_id %>
+			<% end -%>
+			
+			<% # for getting answers for each question %>
+			<% @question_entities.each do |quest| %>
+				<div class="que-box">
+			         <h4>問<%= quest.question_no %></h4>
+					 <div class="question">
+						 <p><%= quest.question_content %></p>
+						 <% if quest.necessary == "yes" %>
+				           <font color="red">＊回答必須</font><br />
+						 <% end %>
+						 <div class="answer">
+				         	<%= render_answer_form(answer_form, quest) %>
+						</div>
+					</div>
+				 </div>
+		      <%  end %>
+		  <% end %>
+		  <%= form.submit '回答を送信' %>
+<% end %>

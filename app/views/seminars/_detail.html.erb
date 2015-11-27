@@ -1,0 +1,28 @@
+<% # detail of seminar(@entity) %>
+
+<% detail_items = @detail_items - [:since, :till, :created_at, :deleted_at]%>
+
+	<table class="op-table op-detail op-w4">
+		<tbody>
+	   		<%= render_entity_items @entity, @def_items, detail_items, :prompt => true, :detail => true %> 
+	   </tbody>  
+	</table>
+	
+	<div class = "op-control">
+		<ul class="cf">
+			<% if allow_to_update_seminar?(@entity) -%>
+				<li><%= link_to_updating(@entity, "更新する", :exception => true, :assoc_ref => {:exclude => ["enrollments"]}) %></li>	
+			<% end -%>
+			<% if allow_to_delete_seminar?(@entity) -%>			    
+				<li><%= link_to_deleting(@entity, "削除する", :exception => true) %></li>
+			<% end -%>
+		</ul>
+	</div>
+
+<% # render for enrolling %>
+<% if allow_to_enroll?(@entity) -%>
+	<% enrollment_display_div_id = "enrollment_display_div_id" %>
+	<div id = '<%= enrollment_display_div_id %>' >
+		<%= link_to_enrolling(@entity, enrollment_display_div_id) %>
+	</div>
+<% end -%>

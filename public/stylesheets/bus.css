@@ -1,0 +1,24 @@
+﻿/*
+ * スクールバス時刻表
+ */
+
+/* テーブル */
+#bus .collection_table {
+	width: 400px;
+}
+
+/* 時 */
+#bus .collection_table td.bus_hour {
+	font-weight: bold;
+	text-align: center;
+}
+
+/* 分 */
+#bus .collection_table td.bus_minute {
+
+}
+
+/* 隔行ごとに背景を設定 */
+#bus .timetable_content_0{
+	background-image: url(/images/tr_bg_blue.jpg);
+}

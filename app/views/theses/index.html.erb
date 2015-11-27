@@ -1,0 +1,56 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】theses 一覧表（旧卒論，修論）											#
+# 【目的役割】卒業論文，修士論文，博士論文の要旨の一覧						#
+# 【更新履歴】［作成］  2009/08/11  田村  初版作成					#
+#             ［変更］ 2009/12/15 並松  新規作成画面の作成 							#
+# ---------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+
+%>
+
+<div id="theses">
+
+
+  <form id = "search">
+	<div class = "query-window">
+		<%= render :partial => 'shared/select_academic_year' %>
+		<%= observe_field_with_params "academic_year", 
+									    :url => {:action => "set_academic_year"},
+										:with => "'academic_year='+ value",
+										:params => {:background_params => @background_params}%>
+		<% # tree_selection for affiliation %>		
+		<%= render :partial => "tree_selection" %>
+ 	</div>
+				
+	<%= render_query_bar  %>
+
+    <% # inherit parameters %>
+    <%= hidden_field_tag :thesis_status,  @thesis_status -%>
+	
+	<%= remote_submit_to_search %>						 	
+</form>
+
+
+
+<br />
+
+  
+ <% # relod when academic_year setting changed %>
+ <%= render :partial => "link_to_thesis_introduction" %>
+
+
+<div class="theses">				 
+<%= render_collection @collection, :preamble => "theses/preamble", :table_header => "shared/head_item" %>
+</div>
+<br /><br />
+
+<% if @presentation_entity # presentation_schedule entity is specified %>
+  <%= link_to "論文発表スケジュールに戻る", 
+              thesis_presentation_schedules_path(:thesis_status => @thesis_status,
+                                                 :academic_year => @academic_year) %>
+<% end %>
+
+</div>
+	
+

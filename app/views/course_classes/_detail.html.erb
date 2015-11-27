@@ -1,0 +1,11 @@
+<% # detail of course_classes with no layout%>
+
+<div id="contents">
+	<div id="contents_i" class="cf">
+	   <h3><%= @menu_name %></h3>
+	   <table class="op-detail-inner">
+	      <%= render_entity_items @course_class, @def_course_class_items, @course_class_render_items, :detail => true, :prompt => true %>
+	   </table>
+	</div>
+
+</div>

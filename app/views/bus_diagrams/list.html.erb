@@ -1,0 +1,19 @@
+﻿<% # list of bus diagrams %>
+
+
+<div id="list_bus_diagrams">
+				 
+
+	<div id = "collection">
+		<div id = "working_div"  class = "op-set">			
+    		<%= observe_search nil, nil, :display_mode => @display_mode%>
+			<%= render_pure_collection%>
+		</div>
+	</div>
+	
+	   
+	 <div id = "back_to_list" style = "display:none">
+	    <%= back_to_list %>
+	 </div>
+
+</div>

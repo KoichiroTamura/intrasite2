@@ -1,0 +1,16 @@
+<% # collection template for schedule %>
+<% width = @calendar_template == "day_calendar" ? "70%" : "100%" %>
+				 
+<div id = "collection">
+	
+	<% # schedule_span selection %> 		
+	<%= render :partial => 'select_schedule_span' %>
+	
+	<div id = "working_div" class="op-set" style="width: <%= width %>;" >
+	    <%= render :partial => "shared/flash_notice" %>
+		
+	    <%= render :partial => @calendar_template %>			
+	</div>
+	
+
+</div>

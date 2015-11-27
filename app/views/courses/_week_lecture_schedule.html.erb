@@ -1,0 +1,11 @@
+<% # for element of lecture schedules　%>
+
+<% # element is array of 6 arrays each of which is collection of course 
+%>
+
+<% # lecture_time, 月，火，水，木，金，土 %>
+<tr>
+	<td class="schedule_shift"><%= week_lecture_schedule.shift %></td>
+    <%= render :partial    => "lecture_schedule_content", 
+               :collection => week_lecture_schedule %>
+</tr>

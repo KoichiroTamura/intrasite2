@@ -1,0 +1,18 @@
+<% # day element of week calendar %>
+
+<% date, day_schedules = *day_elem_of_week 
+   convert_rate = 42.0 / 60.0   # for disply position in day schedule table
+%>
+
+<td class="tg-col" style = "background: <%= current_day_color(date) %>" >
+	<div class="tg-col-eventwrapper">
+		<% index = 0%>
+		<% day_schedules.each do |schedule| %>
+			<%= render :partial => "content_elem_of_day", 
+                       :locals => {:schedule => schedule, 
+                                   :index => index,
+                                   :convert_rate => convert_rate} %>	
+		<% end -%>
+			
+	</div>
+</td>

@@ -1,0 +1,35 @@
+<%# layout wrapper for popup or new windows without corner menus and header banner %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+	
+	
+<%= render :partial => "layouts/header" %>
+
+<% # clear assert time as show_time %>
+<% controller.set_global_assert_time %>
+
+<% case @show_time_mode.to_i 
+    when 0
+      body_class = "now"
+      img_src   = "title.jpg"
+    when -1
+      body_class = "past"
+      img_src   = "title_past.jpg"
+    when  1
+      body_class = "future"
+      img_src   = "title_future.jpg"
+    else
+      fail ArgumentError, "'#{@show_time_mode}' is illegal @show_time_mode."
+  end
+%>
+
+<html>
+	
+	<body class="<%= body_class %>">
+		<div id="contents">
+			<div id="contents_i" class="cf">
+			     <%= yield :layout %>
+		    </div>
+		</div>		 	
+	</body>
+</html>

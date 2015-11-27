@@ -1,0 +1,10 @@
+<% # maintenance_info new form %>
+
+<h3 class="title"><%= @maintenance_info.new_record? ? "管理情報作成" : "管理情報修正" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @maintenance_info do |form| %>
+	  <%= render_form_items form, @def_form_items, @form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

@@ -1,0 +1,77 @@
+<% # special collection template for article_thread %>
+
+<%  # setting default options; necessary here for local variables. 
+    # when :locals hash given indirectly, those are regarded as undefined instead of nil.
+    # in Ruby, "undefined" is regarded as false.
+
+   text_for_adding_new = @with_questionnaires ? "アンケート作成" : "メッセージ作成"
+   working_div ||= "working_div"      # div_id for working space for such as detail, history, input form and the confirmation 
+   _collection ||= @collection        # collection of entities to list up
+   def_items  ||= @def_items          # definition of items
+   list_items ||= @list_items         # items to list up
+   entity     ||= "entity"                   # designating entity
+   entity_template ||= (@entity_template || "article_threads/entity") 
+   preamble   ||= nil                 # preamble template 
+   postscript ||= nil                 # postscript template 
+   table_tag  ||= nil                 # alternative to table tag
+   table_header ||= nil               # header cells for table
+%>
+<div id = "collection">	
+	
+	<%= render(:partial => "shared/flash_notice") %>	
+		    	
+    <%= remote_link_to_new(text_for_adding_new, :controller => "article_threads")  %>
+		
+	<% # receieve mode selection tab %> 		
+	<%= render :partial => 'article_threads/submenu' %>
+	
+    <div id = "<%= working_div %>" class="op-set">			    
+	
+			<% unless _collection.blank? %>
+			      <div class="op-control">
+			      	<ul class="cf">
+			        	<li>選択:</li>
+			        	<li><%= set_all_check_box_flag "すべて", 'input.flag' %></li>
+						<li><%= reset_all_check_box_flag "選択解除", 'input.flag'  %></li>
+					</ul>
+			      </div>  
+					
+		          <% remote_form_for "article_thread[]", @collection, 
+	                    :url => {:action => :get_check_box_flag, 
+	                             :params => {:background_params => @background_params}} do |check_box_flag_form| %>
+												
+						<table class = "op-table last-right">						
+							<% if table_header %>
+							   <tr>
+							   <%= render :partial => table_header,
+					                      :locals  => {:def_items => def_items},
+					                      :collection => list_items %>
+							   </tr>
+							<% end %>
+					    	<tbody id = "article_threads">
+								<%= render :partial    => entity_template, 
+				                           :locals     => {:check_box_flag_form => check_box_flag_form},
+						                   :collection => _collection %>
+								   
+					   		</tbody>
+						</table>
+
+						
+						<div class="op-controll">
+							<%= hidden_field_tag "label_name", :id => "label_name" %>
+							<%= check_box_flag_form.submit "アーカイブ", :onclick => "$(label_name).value = 'archive'" %>
+					 	</div>	
+					<% end # end of check_box_flag_form %>
+				
+				<% # paginating links if paginating %>
+				<%= render_paginating_links(_collection, "article_threads") %>
+		    <% end %>
+
+	
+	</div><% # end of working div %>
+	
+	<div id = "back_to_list"  style = "display:none">
+	      <%= back_to_list %>
+	</div>
+
+</div>

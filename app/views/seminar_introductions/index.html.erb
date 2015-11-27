@@ -1,0 +1,22 @@
+
+
+<h3>現在、ゼミ紹介で表示されているのは、以下のファイルです。</h3>
+<P>ゼミ紹介</P>
+<div id="seminar_introductions">
+	
+	<%= render_collection %>
+
+</div>
+
+エントリーが空の場合は，新規エントリーを下記のように作成します．
+<ol>
+	<li>ドキュメント作成の担当の先生からファイルを受け取る．</li>
+ 	<li>ファイルをseminar_introductionsディレクトリに入れる</li>
+	<li><%= call_for_new("新規追加") %>でエントリーを作成し，該当ファイル名を入れる．</li>
+</ol>
+
+更新する場合は，
+<ol>
+	<li>前もってファイルをseminar_regist_introductionsディレクトリに入れる．</li>
+    <li>｢更新する｣で，エントリを更新し，入れたファイル名を入力する．</li>
+</ol>

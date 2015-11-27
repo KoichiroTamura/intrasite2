@@ -1,0 +1,21 @@
+﻿/*
+ * 【ヘルプ】
+ * ブラウザデフォルトのcssを用いているので、
+ * ここでの設定はほとんどしていません。
+ */
+
+#help_infos #collection {
+	width: auto;
+	margin: 10px 0;
+}
+
+.help_info_content div {
+	margin: 10px 0;
+	line-height: 1.3em;
+}
+
+.help_info_content p,
+.help_info_content li {
+	margin: 5px 0;
+	line-height: 1.3em;
+}

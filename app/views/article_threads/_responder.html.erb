@@ -1,0 +1,20 @@
+<% # article_thread responder as assoc_target of article_thread %>
+<% # wrapper as entity %>
+<% content_tag :div, :entity_id => @thread.entity_id do %>
+	<%= validity_error_holder :base %>
+	<% controller = case @display_mode
+	                  when nil, "", "messages"
+	                     "article_threads"
+	                  when "schedules", "space_schedules"
+	                     "schedules"
+	                end
+	 %>
+ 
+	<% universal_remote_form_for @thread, :url => {:controller => controller}   do |form| %>
+		<% prefix = prefix_for_form(form)%>
+		<% fields_for prefix + "[articles]", @responder, :index => @responder.to_param do |article_form| %>
+	        <%= render_form_items article_form, @def_article_form_items, @article_form_items %>
+    	<% end %>
+		<%= form.submit '送信する' %>
+	<% end %>
+<% end %>

@@ -1,0 +1,54 @@
+<% # for rendering form items %>
+ 
+ <table class="op-detail-inner">
+ 	 <%= form.hidden_field :_states_to_be_locked %><% # keep for optimistic lock %>
+	 <% form_items.each do |item_name| -%>
+		<% item = def_form_items[item_name]  -%>
+	    <% helper      = item.form_helper
+           method      = item.attribute.to_s
+           view_name   = item.view_name
+           helper_args = item.args.dup
+ 			
+		   if helper_args.first.is_a?(Symbol)
+             # apply this function to get args of helper
+             arg_function = helper_args.shift
+             helper_args = [form.object.send(arg_function)] + helper_args
+           end
+			
+           helper_options = Run.get_options_from_args!(helper_args)
+           # required input
+           required = helper_options[:required]
+           # single input
+		   single   = helper_options[:single]
+		   # local information content to help user to input
+		   local_info = helper_options[:local_info]
+        %>		
+		
+		<% content_tag "tr" do -%>
+			
+			<% content_tag "th" do -%>
+			  <% if helper != :hidden_field -%>
+				   	<%= form.label( method, view_name ) %>
+					<%= render :partial => "shared/form_label/required"  if required %>
+					<%= render :partial => "shared/form_label/single"    if single %>
+	                <%= local_information(local_info)                    unless local_info.blank? %>
+			  <% end -%>
+			<% end -%>
+	
+			<% content_tag "td",:class=>(helper.to_s=="text_area" ? "form_item_text_area" : nil) do -%>
+			    <%= validity_error_holder method %>
+				
+			    <% if form.respond_to?(helper) # Rails form helper %>
+	                 <%= form.send(helper, method, *(helper_args << helper_options)) %>
+				<% else # user defined helper %>
+				     <% 
+                        helper_options[:div_class_name]  ||= item_name.to_s  
+                        helper_options[:legend]          ||= view_name
+                     %>
+				     <%= self.send(helper, form, method, *(helper_args << helper_options)) %>
+				<% end %>
+			<% end %>
+				
+		<% end -%>
+	 <% end -%> 
+ </table>

@@ -1,0 +1,75 @@
+<% # render answer response with wvaluation form for  author of the questionnaire
+   # locals ...
+   #   entity : article as answer
+%>
+ 
+
+<% has_read = entity.read? 
+   has_read or entity.has_read! 
+   star_div_id = "star_#{entity.id}" 
+%>
+
+<% div_id = "article_#{entity.id}" %>
+<% if has_read %>   
+	<table class="tr_title">
+		<tbody>
+			<%= tag :tr, :class => "article_tr" %>
+		    	<% # render star %>
+				<% content_tag :td, 
+			           :class => "star", 
+			           :onclick => remote_call_for_action_on_entity(:check_star, entity, 
+                                                                    :controller => "article_threads",
+			                                                        :params => {:latest_article => entity.id, :div_id => star_div_id})  do %>
+					 <% content_tag :span, :id => star_div_id do %>
+					     <%= render :partial => "article_threads/star", :locals => {:has_star => entity.star? } %>
+					 <% end -%>
+			    <% end -%>
+				<% content_tag :td, :onclick =>  toggle_div(div_id) do %>
+				    <table><tr>
+				    <%= render_entity_items entity, @def_article_items, @article_list_items %>
+					</tr></table>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
+<% end %>
+
+<% display_style = has_read ? "none" : "block" %>
+<table class="msg-box msg-open-m">
+	<tbody id = "<%= div_id %>" style = "display: <%= display_style %>;">
+		<tr>
+            <td colspan = 10 >
+            <div>
+			<% universal_remote_form_for @thread,
+			        :url => {:controller => "article_threads",
+			                 :params => {:id => @thread.to_param, :background_params => @background_params}}   do |thread_form| %>
+                   <%  fields_for prefix_for_form(thread_form) + "[articles]", entity, :index => entity.to_param do |answered_form|%>
+					        <%= answered_form.hidden_field :title %>
+							<% # for showing and evaluating answers for each question %>
+							<% entity.answers_sorted_by_question_no.each do |answer_entity| %>
+							     <% question_entity = answer_entity.questionnaire  %>
+								 <div class="que-box">
+							         <h4>問<%= question_entity.question_no %></h4>
+									 <div class="question">
+								         <%= render_answer_entity(answer_entity, question_entity) %>
+									     <% prefix  = prefix_for_form(answered_form) + "[answers]"%>
+										 <% unless (correct_answer_point = question_entity.correct_answer_point).blank? %>
+										 	<p>配点：<%= correct_answer_point %>点</p>
+											<% fields_for prefix, answer_entity, :index => answer_entity.to_param do |a_form| %>
+												<% question_entity.correct_ans == answer_entity.answer and a_form.object.point = correct_answer_point %>
+												<p>採点：<%=a_form.text_field :point, :size => 3 %>点</p>
+											<% end # end of a_form %>
+										 <% end %>
+									</div>
+								 </div>
+								 
+						      <%  end # end of answer_entity %>
+ 					   <% end # end of answered_form %> 
+					<%= thread_form.submit '採点を送信' %>		  
+                 <% end # end of thread_form %>
+			</div>
+		    </td>		
+	    </tr>	
+    </tbody> 	
+</table>	
+

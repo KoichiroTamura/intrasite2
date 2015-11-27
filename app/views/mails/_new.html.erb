@@ -1,0 +1,10 @@
+<% # maintenance_info new form %>
+
+<h3 class="title"><%= @mails.new_record? ? "メール作成" : "メール作成" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @mails do |form| %>
+	  <%= render_form_items form, @def_form_items, @form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

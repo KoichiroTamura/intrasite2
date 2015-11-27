@@ -1,0 +1,10 @@
+<% # document new form %>
+
+<h3 class="title"><%= @document.new_record? ? "参考資料作成" : "参考資料修正" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @document do |form| %>
+	  <%= render_form_items form, @def_form_items, @form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

@@ -1,0 +1,29 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】user_info 詳細										#
+# 【更新履歴】［作成］  2009/08/13　田村				#
+#             ［変更］ 					#
+#                     								#
+# ---------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+%>
+
+<% # detail of user_info %>
+<div class="bubble b-large">
+	<% if @entity -%>
+		<div class = "op-set">     
+			<%= render :partial => "shared/history/valid_span" %><%= button_to_history %>	
+		</div>
+		
+		<div class="bubble-div">
+			<table class="op-detail-inner">
+			    <%= render_entity_items @entity, @def_items, @detail_items, :prompt => true, :detail => true %>
+			</table>
+		</div>
+	<% else -%>
+		不明（もとの一覧表示をやり直してみてください）．
+	<% end %>
+</div>
+
+
+

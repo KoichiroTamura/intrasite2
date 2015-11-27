@@ -1,0 +1,141 @@
+/*
+ * 【シラバス関連】のcss
+ * ただしレポート課題はexercises.css
+ */
+
+
+
+form#new_course table{
+	border: solid 1px #CCC;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+form#new_course table td{
+	border: solid 1px #CCC;
+
+}
+
+
+
+
+
+
+
+/* 1段階目のtable（collection_table）
+ * ベースはcollection.cssに記述されているので、以下上書きする値のみを設定する */
+#working_div .collection_table {
+	
+}
+
+/* 1段階目のtr（最初に表示される部分 */
+#courses .collection_table tr {
+	background: url(../images/tr_back.gif) -1px center no-repeat;
+}
+
+/* trにマウスをあわせた場合の動き。　カーソルを変更する。 */
+#courses .collection_table tr:hover {
+	cursor: pointer;
+	background:url(../images/tr_bg_gray2.jpg);
+}
+
+/* trをクリックしている間の動き。　背景を変更する。 */
+#courses .collection_table tr:active {
+	background:url(../images/tr_bg_yellow2.jpg);
+}
+
+/* 1段階目のtd */
+#courses .collection_table tr td{
+	border: 0;
+	border-bottom: 2px dotted #CCC;
+	padding-left: 28px;
+}
+
+
+
+/* 2段階目のtable。　クリック後に表示されるテーブル。 */
+#courses .collection_table table {
+	width: auto;
+}
+
+/* 2段階目のtr */
+#courses .collection_table table tr{
+	background: none;
+}
+
+/* 2段階目のtd */
+#courses .collection_table table td{
+	border-bottom: 2px dotted #CCC;
+	padding-left: 28px;
+	width: auto;
+}
+
+/* 二段目tdそれぞれに固有値を設定する場合
+#courses .collection_table table td.td1{ width: 150px;}
+#courses .collection_table table td.td2{ width: 200px;}
+#courses .collection_table table td.td3{ width: 100px;}
+#courses .collection_table table td.td4{ width: 100px;}
+*/
+
+
+
+
+
+/* フォーム関係。　汎用フォームも内に含むのでmargin,paddingに注意する */
+#courses .input_form {
+	margin: 0 0 20px 0;
+	background: #f6f6f6;
+}
+
+#courses .input_form div {
+	padding: 5px 10px;
+	font-size: 12px;
+}
+
+
+
+
+/* 時間割表示 　時間割テーブル */
+#courses .schedules_table{
+	width: 100%;
+	border-collapse: collapse;
+	border-color:#66CC66;
+}
+
+#courses .schedules_table th{
+	background: url(../images/header_bg.jpg) repeat;
+	border:1px solid #096;
+	color:#FFF;
+	padding: 5px;
+}
+
+#courses .schedules_table td {
+	border:1px solid #096;
+	padding: 10px 5px;
+	font-size: 12px;
+	vertical-align: top;
+	line-height: 1.3;
+}
+
+/* 各授業 */
+#courses .schedules_table td p {
+	margin: 0 0 6px 0;
+	padding: 2px 2px 2px 5px;
+	border: 1px solid #fff;
+	border-left: 3px solid #096;
+}
+
+#courses .schedules_table td p:hover {
+	border: 1px solid #f30;
+	border-left: 3px solid #f30;
+}
+
+/* 左、時限数のtd */
+#courses .schedules_table td.schedule_shift{
+	width: 40px;
+	background: url(../images/header_bg2.jpg) repeat;
+	color:#FFF;
+	text-align: center;
+	font-weight: bold;
+}
+

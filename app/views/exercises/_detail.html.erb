@@ -1,0 +1,51 @@
+<% # detail of excersise(= @entity) %>
+
+<div id="exercises">
+
+	<%= render :partial => "shared/flash_notice"%>
+	<div class = "op-set">
+		<%= render :partial => "shared/history/valid_span" %><%= button_to_history %>
+	</div>
+	
+	<% unless @entity.blank? %>
+		<% if owner_of?(@entity) %>
+			<div class="op-control">
+			   <%= link_to "この授業のレポートの学生別成績一覧", 
+			               {:action => "stochastics_of_students", :id => @entity, :background_params => @background_params }, 
+			               {:target => "_new", :class => "link_a"}%>
+			   <%= local_information "この授業からの出題すべてに対するレポートについて，学生別の成績一覧を表示します．"%>
+			</div>
+		<% end %>
+		
+		<table class="op-detail-inner">
+	       <%= render_entity_items @entity, @def_items, @exercise_items, :detail => true, :prompt => true %>
+		</table>
+		
+		<div class="op-set">
+			<h3>提出レポート:</h3>
+			
+			<div>
+				<p>提出レポート数 ： <span><%= @n_of_reports %></span>
+				 （ うち，添削未了 ： <span class="red"><%= @judgement_statistics ? @n_of_reports - @judgement_statistics.count.to_i : 0 %></span> ）</p>
+				<% if @judgement_statistics -%>
+					<p>採点</p>
+					<ul>
+						<li>平均 ： <span><%= formatting_float_number(@judgement_statistics.average, "%.1f") %></span></li>
+						<li>標準偏差 : <span><%= formatting_float_number(@judgement_statistics.stddev, "%.1f") %></span></li>
+					</ul>
+				<% end -%>
+			</div>
+			
+			<div class="op-control">
+				<%= link_to "提出レポート一覧へ", 
+				            {:controller => "reports", :exercise_id => @entity, :layout => "base_layout"}, 
+							{:target => "_new",:class => "link_a"} %>
+				（＊新規レポート提出もこちらから）
+			</div>
+	
+		</div>	
+	
+	<% end %>
+
+
+</div>

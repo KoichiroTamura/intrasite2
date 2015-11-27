@@ -1,0 +1,23 @@
+<% # render body of member assoc_target of memberable entity %>
+
+<% if show_item?(options, :since) %>
+	<%= datetime_select_for_since(form)%>から<br />
+<% end -%>
+<% if show_item?(options, :till) %>
+	<%= datetime_select_for_till(form) %><br />
+<% end -%>
+
+<% # selection of user_info as assoc_owner %>	  
+<%= render :partial => "shared/input/select_by_realname", 
+           :locals  => {:form => form, 
+                        :entity => assoc_target.user, 
+                        :assoc_name => assoc_name,
+                        :entity_model => "UserInfo"} %>
+	  		  
+<% if show_item?(options, :member_role) %>
+ 	役割：<%= form.text_field "description" %>
+<% end %> 
+
+<% if show_item?(options, :representative) -%>
+	<p><%= form.check_box "representative" %>代表</p>
+<% end -%>

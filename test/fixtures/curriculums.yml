@@ -1,0 +1,74 @@
+# == Schema Information
+# Schema version: 70
+#
+# Table name: curriculums
+#
+#  id                          :integer(11)   not null, primary key
+#  _rec_id                     :string(255)   
+#  unit                        :integer(11)   
+#  office_code                 :string(255)   
+#  _affiliation_name           :string(255)   
+#  affiliation_run_id          :integer(11)   
+#  must_or_choice              :string(255)   
+#  is_must                     :boolean(1)    
+#  squad                       :string(255)   
+#  _subject                    :string(255)   
+#  squad_detail                :text          
+#  teacher_for_math            :string(255)   
+#  is_must_for_math_teacher    :boolean(1)    
+#  teacher_for_info            :string(255)   
+#  is_must_for_math_info       :boolean(1)    
+#  main_or_sub                 :string(255)   
+#  is_main                     :boolean(1)    
+#  comment                     :text          
+#  _old_class_id               :string(255)   
+#  preverse_curriculumn_run_id :integer(11)   
+#  _grade                      :string(255)   
+#  _old_subject                :string(255)   
+#  _old_subject_comment        :string(255)   
+#  _old_subject_id             :string(255)   
+#  _class_id                   :string(255)   
+#  class_Kei                   :string(255)   
+#  class_Gun                   :string(255)   
+#  _seq                        :string(255)   
+#  _entrance                   :string(255)   
+#  division                    :string(255)   
+#  _subject_id                 :string(255)   
+#  syllabus_run_id             :integer(11)   
+#  open                        :string(255)   
+#  web                         :string(255)   
+#  rep                         :string(255)   
+#  print                       :string(255)   
+#  squad_count                 :string(255)   
+#  year                        :string(255)   
+#  semester                    :string(255)   
+#  style                       :string(255)   
+#  _TA                         :string(255)   
+#  season                      :string(255)   
+#  run_id                      :integer(11)   
+#  create_at                   :datetime      
+#  created_by                  :integer(11)   
+#  create_comment              :text          
+#  delete_at                   :datetime      
+#  deleted_by                  :integer(11)   
+#  delete_comment              :text          
+#  version                     :integer(11)   
+#  count                       :integer(11)   
+#  since                       :datetime      
+#  till                        :datetime      
+#  parent_run_id               :integer(11)   
+#  root_run_id                 :integer(11)   
+#  seq                         :string(255)   
+#  full_seq                    :text          
+#  marged_from                 :string(255)   
+#  splitted_from               :string(255)   
+#  data_type                   :string(255)   
+#  name                        :string(255)   
+#  fullname                    :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

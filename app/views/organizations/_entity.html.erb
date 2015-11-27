@@ -1,0 +1,28 @@
+<% # for organization entity %>
+
+<tr>
+	<td>
+		<table width="200" border="1">
+		    <tr>
+		        <td colspan=2>
+		        	<%= time_in_japanese_style(entity.since, :since, :short => true) %>〜
+				    <%= time_in_japanese_style(entity.till,  :till, :short => true) %>
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>所属
+		        </th>
+				<% post = entity.post.blank? ? "" : "（#{entity.post}）"%>
+		        <td><%= hierarchy_style( entity.affiliation ) + post %>
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>ステータス
+		        </th>
+				<% title = entity.title.blank? ? "" : "（#{entity.title}）"%>
+		        <td><%= hierarchy_style(entity.status)  + title %>
+		        </td>
+		    </tr>
+		</table>
+	</td>
+</tr>

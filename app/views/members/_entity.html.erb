@@ -1,0 +1,8 @@
+<% # render member entity %>
+
+<% if user?(entity.user) -%>
+	<tr>	
+		<td> <%= entity.member_role %></td>
+		<td><%= user_info_detail_link(entity.user) %></td>
+	</tr>
+<% end -%>

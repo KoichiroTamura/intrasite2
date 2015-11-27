@@ -1,0 +1,32 @@
+﻿
+/* システム保守のお知らせ */
+#maintenance_infos {
+	width: 50em;
+	height: 50em;
+	overflow-y: scroll;
+	border-top: 1px solid #3A9891;
+	border-bottom: 1px solid #3A9891;
+}
+
+#maintenance_infos .box {
+	margin: 0 0 20px 0;
+	padding: 0 10px;
+}
+
+#maintenance_infos h4 {
+	font-size: 10pt;
+	padding: 0 0 0 10px;
+	border-bottom: 1px dashed #000;
+}
+
+#maintenance_infos .text {
+	font-size: 10pt;
+	margin: 0 0 10px 0;
+}
+
+#maintenance_infos .text ul,
+#maintenance_infos .text ol {
+	padding: 0 0 0 20px;
+	margin: 5px 0;
+}
+

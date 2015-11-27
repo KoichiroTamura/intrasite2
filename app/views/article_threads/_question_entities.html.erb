@@ -1,0 +1,20 @@
+<% # render question entities of questionnaire  %>
+			<% @question_entities.each do |quest| %>
+				<div class="que-box">
+			         <h4>問<%= quest.question_no %></h4>
+					 <div class="question">
+						 <p><%= quest.question_content %></p>
+						 <% if quest.necessary == "yes" -%>
+				           <p><font color="red">＊回答必須</font></p>
+						 <% end -%>
+						 <% unless (cap=quest.correct_answer_point).blank? -%>
+						 	<p>配点：<%= cap %>点</p>
+						 <% end -%>
+						 <div class="answer">
+				         	<%= render_answer_style( quest) %>
+						</div>
+					</div>
+				 </div>
+		      <%  end %>
+
+

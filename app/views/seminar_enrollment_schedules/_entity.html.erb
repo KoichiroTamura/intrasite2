@@ -1,0 +1,11 @@
+<% # for an entity of seminar_presentation_schedule %>
+
+<tr >
+	<th><%= @stage == entity.stage ? "今は＝＞" : nil %></th>
+	<td class="stage"><%= entity.stage %> </td>
+	<td class="since_till"><%= time_in_japanese_style(entity.start_time, :since) %>～<%=time_in_japanese_style(entity.end_time, :till) %> </td>
+	<td><%= entity.description %> </td>
+	<td><%= teacher? ? 
+             entity.description_for_teachers :
+	         entity.description_for_students %> </td>
+</tr>

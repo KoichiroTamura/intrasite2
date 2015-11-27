@@ -1,0 +1,18 @@
+<% # selection of schedule_span by tab %>
+
+<div class = "op-tab">
+	<ul class="cf">
+		<% (0..3).each do |i|%>
+			<% schedule_span = schedule_span_name(i) 
+               class_name   = @schedule_span == schedule_span ? "current" : ""
+			%>
+			<li class = "<%= class_name%>">
+				<a href = "#" <%= remote_call_to_set_schedule_span(schedule_span)%>>
+					<span>
+						<%= schedule_span %>
+					</span>
+				</a>
+			</li>
+		<% end -%>
+	</ul>
+</div>

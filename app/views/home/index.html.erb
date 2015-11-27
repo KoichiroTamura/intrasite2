@@ -1,0 +1,25 @@
+<% 
+#［日本語ページタイトル設定］
+@menu_name = "ホーム"
+
+@is_current = true
+%>
+
+
+<div style = "position:absolute;">
+	<div class="slide_show" >
+		<param  name="wmode" value="transparent"  />
+		<embed src="flash/slideshow.swf" wmode="transparent"  type="application/x-shockwave-flash" autostart="true" loop="true" pluginspage="https://www.adobe.com/go/getflashplayer_jp" width="800px" height="300px" />
+	    <div class="cap">https://intrasite.sist.chukyo-u.ac.jp/</div>
+	</div>
+	
+	<%= render :partial => "shared/flash_notice" %>
+	
+	<%= link_to "携帯版","/k" %>
+	スクールバス時刻表，本日のスケジュール，シラバス一覧，の携帯用ページへ移動します．
+
+    <h3 class="h3">システム保守のお知らせ</h3>
+	<div id="maintenance_infos">
+		<%= render_collection_only @collection, :table_tag=>"false" %>
+	</div>
+</div>

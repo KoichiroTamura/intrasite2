@@ -1,0 +1,12 @@
+<% # detail of corner %>
+
+
+<td colspan = 6>
+
+   <%= render_collection_only @menus, 
+                         :entity_template => "menu", 
+                         :table_header => "shared/head_item",
+                         :def_items  => @def_items,
+                         :list_items => @menu_items  %>
+
+</td>

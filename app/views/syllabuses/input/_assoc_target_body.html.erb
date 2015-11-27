@@ -1,0 +1,62 @@
+<% # for input of syllabus assoc_target
+   # associated syllabus is dependee
+%>
+<% uuid      = random_id   # must be generated for each element template.
+   syllabus = assoc_target
+   select_template = "shared/input/select_for_dependee"
+   prefix = prefix_for_form(form) + "_per_se_"
+   entity_model    = "Syllabus"
+  %>
+
+<% if show_item?(options, :since) %>
+	<%= datetime_select_for_since(form)%>から<br />
+<% end -%>
+<% if show_item?(options, :till) %>
+	<%= datetime_select_for_till(form) %><br />
+<% end -%>
+
+	<% if syllabus.blank? || syllabus.new_record? %>
+			<table width="200" border="1">
+			    <tr>
+			        <th>既存
+			        </th>
+			        <td>
+			           <%= notice "既存のシラバスを利用する場合です:　タイトルと作成者名でキー検索し，その結果のなかから選択します．" %>
+					   <br />
+					   タイトル<%= text_field_tag "name_#{uuid}_in", @course.name %>
+					   作成者名<%= text_field_tag "author_#{uuid}_in" %>
+                       <%= button_to_function "検索", "$(this).next().value = $(this).previous().value+'|'+$(this).previous(1).value" %>
+			           <%= hidden_field_tag "name_#{uuid}" %>
+					   
+
+					    <div id = "<%= uuid %>">
+					    	<%= render :partial => select_template, 
+			                           :locals  => {:prefix => prefix, 
+			                                        :select_options => [],
+			                                        :model  => entity_model} %>
+						</div>
+			        </td>
+			    </tr>
+			    <tr>
+			        <th>
+                        新規
+			        </th>
+			        <td>
+			        	<%= notice "新規に作成する場合です：　｢新規作成｣により，新シラバス作成後，再びこの科目の「更新」を行い，そこで，既存のシラバスとして選択します．" %>
+						<br />
+			        	<%= remote_link_to_new("新規作成", :controller => "syllabuses") %>
+			        </td>
+			    </tr>
+			</table>
+
+		    <%= observe_field_with_params  "name_#{uuid}",
+	                      :url    => {:action => :select_options_from_name_and_author},
+                          :update => uuid,
+	                      :with   => "'name='+value",
+	                      :params => {:model => entity_model, :template => select_template, 
+                                      :prefix => prefix,
+                                      :background_params => @background_params} %>
+	  <% else %>
+	  	       <%= "「#{syllabus.name}」を"%> <%= link_to_updating(syllabus) %>
+			   <%= hidden_field_tag prefix, syllabus.run_id %>
+	  <% end -%>

@@ -1,0 +1,23 @@
+   
+	<div id = "position_tree_structure" class="position_tree_structure">
+		 <h3>標的ノードの指定</h3>
+	    <form id="search">
+			<div class = "aff_and_sta_tree">
+				<div id="div_affiliation">
+					<h3 class="title_h3">所属</h3>
+				    <%= render_tree_structure( Affiliation.tree_root, @position.fullname, :radio_name => "position" )%>
+				</div>
+				<br />
+				<div id="div_status">
+					<h3 class="title_h3">ステータス</h3>
+					<%= render_tree_structure( Status.tree_root, @position.fullname, :radio_name => "position" )%>
+				</div>
+				<br />
+				<div id="div_space">
+					<h3 class="title_h3">スペース</h3>
+					<%= render_tree_structure( Space.tree_root, @position.fullname, :radio_name => "position" )%>
+				</div>
+			</div>   
+	    </form>
+		<%= observe_search %>
+    </div>

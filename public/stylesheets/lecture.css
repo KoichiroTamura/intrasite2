@@ -1,0 +1,27 @@
+div.lecture_detail h3{
+	background: url(../images/h3_under.jpg) 0 24px;
+	height: 30px;
+	color: #FFF;
+	padding: 5px 0 0 18px;
+}
+
+.lecture_detail table{
+	border: solid 1px #999;
+	margin-left: 20px;
+	width: 90%;
+}
+
+.lecture_detail table th{
+	border: solid 1px #999;
+	padding: 8px;
+	width: 120px;
+}
+
+.lecture_detail table td{
+	border: solid 1px #999;
+	padding: 8px;
+}
+
+div.lecture_detail h3.cursor-pointer{
+	cursor: pointer;
+}

@@ -1,0 +1,11 @@
+<% # new for report_comment input %>
+
+
+<h3 class="title"><%= @report_comment.new_record? ? "レポートコメント作成" : "レポートコメント更新" %></h3>
+
+<br />
+  
+<% universal_remote_form_for @report_comment do |form| %>
+      <%= render_form_items form, @def_form_items, @form_items%>
+	  <%= form.submit '実行する' %>
+<% end %>

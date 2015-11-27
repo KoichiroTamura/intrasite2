@@ -1,0 +1,56 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】seminars 一覧表					#
+# 【更新履歴】［作成］  2009/08/14  田村  初版作成					#
+#             ［変更］ 2009/08/20　田村						#
+#              [変更] 2010/03/12　田村
+#              [変更] 2011/06/11　田村
+#              [変更] 2011/06/23　田村
+#              [変更] 2011/08/19　田村
+# ---------------------------------------------------------------------	#
+
+%>
+
+
+<div id="seminars">
+
+	<div>
+		<p>
+			<% if teacher? || admin? %>
+				<%= link_to "ゼミ配属の手引き（教員用）詳細",{:controller=>"seminar_regist_introductions", :action => "show", :user_category => "教職員"},{:target=>"_new"} %>
+				<%= "　　参考："%>
+			<% end %>
+			<%= link_to "ゼミ配属の手引き（学部生用）詳細",{:controller=>"seminar_regist_introductions", :action => "show", :user_category => "学部生"},{:target=>"_new"} %>
+		</p>
+		<% if admin? %>
+			<p>
+				管理者用：<%= link_to "ゼミ配属の手引き管理", seminar_regist_introductions_path(:admin => true), :target=>"_new" %>
+			</p>
+		<% end %>
+	</div>
+
+	<div>
+		<table class="schedule_table">
+			<%= render :partial => "seminar_enrollment_schedules/entity", :collection => @schedules %>
+		</table>
+	</div>
+
+	<% if allow_to_display_summing_up? -%>
+		<p>
+			<%= link_to "登録一覧表（学籍番号順）へ", {:controller => "/seminar_member/students", :layout => "base_layout"}, {:target => "_new"} %>
+		</p>
+	<% end -%>
+
+	<div>
+	  <form id = "search">
+		<%= render_query_bar %>
+	  </form>
+	</div>
+
+	<%= observe_search %>
+
+	<%= notice(time_in_japanese_style(@show_time), "現在：",  seminar_up_to_date( "（最新にする）")) %>
+
+	<%= render_collection @seminars %>
+
+</div>

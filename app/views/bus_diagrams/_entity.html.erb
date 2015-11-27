@@ -1,0 +1,9 @@
+<% # entity of bus_diagram  %>
+
+	<tr class="<%=odd_or_even_row(entity_counter)%>">
+		<th>
+			<%= entity.hour < 10 ?  "&nbsp;" : "" %>
+			<%= entity.hour %>
+		</th>
+		<td><%= entity.min %></td>
+	</tr>

@@ -1,0 +1,22 @@
+<% # remote link to add assoc target
+   # locals :
+   #   controller
+   #   base_div_id,
+   #   prefix, 
+   #   entity_template,
+   #   root_entity_since,
+   #   options ... :single, :only_new, :collection_name, :item_name, :entity_template, :legend
+
+   legend = options[:legend]
+%>
+	  
+
+	      <%= link_to_remote_with_params "#{legend}を追加",
+	             :url    => {:controller => controller, :action => :adding_assoc_target},  
+	             :params => {:base_div_id => base_div_id,
+                             :prefix => prefix, 
+	                         :template  => entity_template,
+                             :root_entity_since => root_entity_since,
+	                         :options   => options} 
+	      %>
+

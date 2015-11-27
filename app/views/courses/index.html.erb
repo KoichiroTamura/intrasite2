@@ -1,0 +1,31 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】courses 一覧表											#
+# 【更新履歴】［作成］  22009/07/27　田村				#
+#             ［変更］ 2009/08/04　田村 					#
+#             ［変更］ 2011/05/30　田村
+#                     								#
+# ---------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+
+%>
+
+<div id="courses">
+	<form id= "set_academic_season">
+			<div>
+				<%= render :partial => 'shared/select_academic_year' %>
+				<%= render :partial => "shared/select_season" %>
+			</div>
+	</form>
+	<%= observe_form "set_academic_season",  
+                      :url => {:action => "set_academic_season",
+                               :params => {:background_params => @background_params}} %>
+			
+	<form id = "search">
+		<%= render :partial => "query_div" %>		
+		<%= remote_submit_to_search %>	
+	</form>
+
+	<%= render_collection  %>
+
+</div>

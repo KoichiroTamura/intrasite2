@@ -1,0 +1,6 @@
+<% # for selection of collection 
+   # prefix is name of select_tag 
+   # selecte_options is choices for selection 
+%>
+
+<%= select_tag( prefix + "[#{Run.run_foreign_key(model)}]", options_for_select(select_options.to_a) ) %>

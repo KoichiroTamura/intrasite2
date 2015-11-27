@@ -1,0 +1,16 @@
+<% # stochastics of answers %>
+
+<div class="output-container">
+	<div class="op-set">
+		<div class="op-body">
+			<h3 class="title_h3">アンケート回答の統計</h2>
+			
+			
+			設問ごとの統計
+			<%= render_collection_only @question_wise_stochastics, :entity => "question_wise_stochastic" %>
+			
+			回答者ごとの統計
+			<%= render_collection_only @answer_response_wise_stochastics, :entity => "answer_response_wise_stochastic" %>
+		</div>
+	</div>
+</div>

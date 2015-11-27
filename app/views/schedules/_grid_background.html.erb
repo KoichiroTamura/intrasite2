@@ -1,0 +1,8 @@
+<% # background to set grid of calendar %>
+
+<% date, day_schedules = date_schedules_pair %>
+
+			
+<td class="st-bg " style = "background: <%= current_day_color(date) %>; cursor: pointer;" <%= remote_call_for_new_schedule(date) %>>
+	&nbsp;
+</td>

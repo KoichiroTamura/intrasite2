@@ -1,0 +1,10 @@
+<% # entity_with_remote_detail_call %>
+
+<% entity = entity_with_remote_detail_call 
+   def_items  ||= @def_items
+   list_items ||= @list_items 
+   odd_or_even = odd_or_even_row(entity_with_remote_detail_call_counter) %>
+
+<tr class="pointer <%= odd_or_even %>" <%= remote_call_for_detail(entity) %> >
+	<%= render_entity_items(entity, def_items, list_items, :tag => "td") %>
+</tr>

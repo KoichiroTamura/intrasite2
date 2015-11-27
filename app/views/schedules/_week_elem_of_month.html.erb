@@ -1,0 +1,33 @@
+<% # week element of month calendar %>
+
+<% height_of_header   = 40
+   height_of_schedule = 20  # px to render schedule
+   banner_schedules   = banner_schedules(week_elem_of_month)
+   height_of_content  = height_of_header + [(banner_schedules.size + content_element_sizes(week_elem_of_month).max), 5].max * height_of_schedule
+%>
+
+<% unless week_elem_of_month.blank? -%>
+	<div class="sh-month-row  cf" style = "height: <%= height_of_content %>px">
+		<table class="sh-m-bg-table" style = "height: <%= height_of_content %>px">
+			<tbody>
+				<tr >
+					<%= render :partial => "grid_background", :collection => week_elem_of_month, :as => :date_schedules_pair %>
+				</tr>
+			</tbody>
+		</table>
+	
+		<table class="st-grid">
+			<tbody>	
+			    <tr>
+			    	<%= render :partial => "week_header_for_month", :collection => week_elem_of_month %>
+			    </tr>
+				<tr>
+	                <%= render :partial => "banner_schedule", :collection => banner_schedules %>
+				</tr>
+				<tr> 
+					<%= render :partial => "day_elem_of_month", :collection => week_elem_of_month %>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+<% end -%>

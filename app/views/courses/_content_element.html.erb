@@ -1,0 +1,11 @@
+<% # for element of content of lecture_schedule %>
+<% # element is a lecture %>
+
+<% lecture = content_element -%>
+
+<p>
+	<%= call_for_detail(lecture, lecture.title, {}, {:target => "_new"}) %>
+	<br />
+	（<%= lecture.teacher_name %>）
+	<%= lecture.room %>
+</p>

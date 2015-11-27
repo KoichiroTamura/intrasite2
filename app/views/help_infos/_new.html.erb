@@ -1,0 +1,12 @@
+<% # help_info new form %>
+
+<% new_record = @help_info.new_record? %>
+
+<h3 class="title"><%= new_record ? "新ヘルプ作成" : "ヘルプ更新" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @help_info do |form| %>
+	  <%= render_form_items form, @def_form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

@@ -1,0 +1,15 @@
+<% # main view when show time is changed %>
+<div>
+	<div class="change_show_time_info1">
+		<h2 class="change_show_time_h2">システム表示日時が「実現在時」ではなく，</h2>
+		<span class="change_show_time_time"><%= time_in_japanese_style @show_time_base %></span>
+		<h2 style="color:red;margin-left:235px;">に設定されます．</h2>
+	</div>
+	<div class="change_show_time_info2">
+		<p>以降，メニューをはじめ，すべての表示がこの時点におけるシステムの表示になります．</p>
+		<p>この日時を設定することにより，システムの（仮想）現在時を一時的に変更します（この時間は実時間と共に変動します）．</p>
+		<p align = "center"><%= link_to "上記設定時のホームへ", :controller => "home" %></p>
+	</div>
+</div>	
+
+

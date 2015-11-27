@@ -1,0 +1,7 @@
+<% # new for exercise input %>
+
+
+<% universal_remote_form_for @exercise do |form| %>
+      <%= render_form_items form, @def_form_items, @form_items%>
+	  <%= form.submit '実行する' %>
+<% end %>

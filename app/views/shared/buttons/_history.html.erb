@@ -1,0 +1,5 @@
+<% # button to remote call for history of entity %>
+
+<% entity ||= @entity %>
+<% text   ||= "履歴" %>
+<button <%= remote_call_for_history( entity ) %>><%= text %></button>

@@ -1,0 +1,39 @@
+<% div_class_name="attached_files" %>
+<% uuid=random_id %> <% # random_id is RunsController#random_id %> 
+<% at_files = assoc_target %>
+<div class="<%= div_class_name %>">
+<% if at_files.blank? || at_files.new_record? %>
+	<div style="position:relative;margin:0px;padding:0px" id="attacheed-display-<%= uuid %>">
+		<input type="file" id="File-Dummy-<%= uuid %>" name="File-Dummy-<%= uuid %>" onclick="this.click()"
+				style="opacity:0;filter:alpha(opacity=0);position:relative;z-index:2;background:red;overflow-x:hidden;width:20px">
+		<%= image_tag 'upload_icon.png',:id=>"DummyImg-#{uuid}",:style=>"position:absolute;top:0px;left:0px;z-index:1" %>
+	</div>
+
+	<iframe style="display:none" id="Iframe-<%= uuid %>" name="Iframe-<%= uuid %>">
+		
+	</iframe>
+
+	<% form_tag "/attached_files/create",
+				 {:multipart=>true,
+				  :method=>"post",
+				  :style=>"display:none",
+				  :target=>"Iframe-#{uuid}",
+				  :id=>"Form-#{uuid}"} do %>
+		<input type="hidden" name="id" value="<%= uuid %>">
+	<% end %>
+
+
+<% javascript_tag do %>
+	new Uploader('<%= uuid %>',
+				'<%= url_for(:controller=>"attached_files",:action=>"progress") %>',
+				'<%= url_for(:controller=>"attached_files",:action=>"show") %>', 
+				$('Form-<%= uuid %>'), 
+				$('attacheed-display-<%= uuid %>'));
+<% end %>
+
+<% else %>
+	<%= attached_file_link(at_files) %>
+<% end %>
+
+</script>
+

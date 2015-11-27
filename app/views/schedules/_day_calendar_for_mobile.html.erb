@@ -1,0 +1,28 @@
+<% # day calendar for mobile %>
+
+<% all_day_long = all_day_long_schedules(@schedules, :day)
+   with_time = @schedules - all_day_long %>
+
+<div id = "collection">
+	<%= link_to(image_tag("mobile/mb_title.gif",:style=>"border:0px"),"/k") %><br />
+	<%= image_tag("mobile/mb_menu_sche.gif",:style=>"border:0px") %><br />
+	
+	<%= render :partial => "button_to_today_schedule" %>
+	<%= render :partial => "button_to_prev_schedule"%>
+	<%= render :partial => "button_to_next_schedule"%>
+	<p>
+		<%= @display_time.year %>年
+		<%= @display_time.month %>月
+		<%= @display_time.day %>日
+		（<%= day_of_week_name(@display_time.wday) %>）
+	</p>
+
+	<table id="schedule_table" >
+		<tr>
+			<%= render :partial => "all_day_long_schedule", :collection => all_day_long %>
+	    </tr>
+		<tr>																								
+	   		<%= render :partial => "day_elem_of_month", :collection => with_time %>
+		</tr>
+	</table>	
+</div>

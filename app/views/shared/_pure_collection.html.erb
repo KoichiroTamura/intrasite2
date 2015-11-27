@@ -1,0 +1,56 @@
+<% # shared collection part to render pure collection
+   #   means niether  working div nor adding new entity nor list_back %>
+
+<%  # setting default options; necessary here for local variables. 
+    # when :locals hash given indirectly, those are regarded as undefined instead of nil.
+    # in Ruby, "undefined" is regarded as false.
+
+
+   collection ||= @collection        # collection of entities to list up
+   controller ||= controller_name     # controller 
+
+   div_id     ||= "div_id"
+   def_items  ||= @def_items          # definition of items
+   list_items ||= @list_items         # items to list up
+   entity     ||= "entity"                   # designating entity
+   entity_template   ||= (@entity_template || "#{controller}/#{entity}")  # template for entity
+   entity_locals ||= nil              # locals for entity_template
+   spacer_template ||= @spacer_template || "shared/spacer_template"   # template as spacer between entities
+   preamble   ||= nil                 # preamble template 
+   postscript ||= nil                 # postscript template 
+   table_tag  ||= nil                 # alternative to table tag
+   table_header ||= @table_header || "shared/head_item"    # header cells for table
+%>
+
+	<div id = "<%= div_id %>" >
+	        <%= preamble ? render(:partial => preamble) : nil %>
+			
+			<% if table_tag.blank? %>
+				<table class = "op-table msg_list">
+			<% end %>
+			
+			<% if list_items %>
+			   <thead>
+				   <tr>
+				   <%= render :partial => table_header,
+		                      :locals  => {:def_items => def_items},
+		                      :collection => list_items %>
+				   </tr>
+			   </thead>
+			<% end %>
+					
+			<%= render :partial    => entity_template, 
+                       :locals     => entity_locals,
+                       :spacer_template => spacer_template,
+	                   :collection => collection %>
+
+								   
+			<% if table_tag.blank? %>
+				</table>
+			<% end %>
+			
+	        <%= postscript ? render(:partial => postscript) : nil %>
+	
+			<% # paginating links if paginating %>
+			<%= render_paginating_links(collection, controller) %>
+	</div>

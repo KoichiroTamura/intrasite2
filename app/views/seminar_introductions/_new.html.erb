@@ -1,0 +1,8 @@
+<% # seminar_introducitons new form %>
+
+<% universal_remote_form_for @entity do |form| %>
+	  <%= render_form_items form, @def_form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>
+
+

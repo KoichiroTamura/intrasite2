@@ -1,0 +1,37 @@
+<% # simple month calendar for corner menu %>
+
+<% # locals ... display_time %>
+
+<div id="simple_calendar"  class="menu-body" style="display:block">
+	<table class="side-calendar">
+		<thead>
+			<tr>
+				<td><%= render :partial => "schedules/button_to_today_month", :locals => {:display_time => display_time} %></td>
+				<td><%= render :partial => "schedules/button_to_prev_month", :locals => {:display_time => display_time}  %></td>
+				<th colspan="4" id="year_month" class = "cursor-pointer">
+					<%= link_to "#{display_time.year}年#{display_time.month}月",
+                                schedules_path( :menu_name1 => "コミュニケーション：スケジュール",
+                                                :date => display_time ) %>
+				</th>
+				<td><%= render :partial => "schedules/button_to_next_month", :locals => {:display_time => display_time}  %></td>
+			</tr>
+			<tr>
+				<th id="sun" abbr="sun">日</th>
+				<th abbr="mon">月</th>
+				<th abbr="tue">火</th>
+				<th abbr="wed">水</th>
+				<th abbr="thu">木</th>
+				<th abbr="fri">金</th>
+				<th id="sat" abbr="sat">土</th>
+			</tr>
+		</thead>
+	</table>
+		
+	<%= simple_month_calendar(display_time,
+							  :month_tag => "table class='side-calendar'", 
+                              :week_tag => "tr", 
+                              :day_tag => "td", 
+							  :current_date_class => "cal-today",
+							  :other_month_date_class => "cal-other-month") %>
+	
+</div>

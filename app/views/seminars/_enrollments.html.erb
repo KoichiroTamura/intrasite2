@@ -1,0 +1,8 @@
+<% # collection of enrollment for seminar %>
+<% # locals... 
+   #   enrollments
+   #   seminar_id  %>
+   
+<div id = "<%= "enrollments_of_seminar_#{seminar_id}" %>" >
+		 <%= render_collection_only enrollments, :entity_template => "enrollment" %>
+</div>

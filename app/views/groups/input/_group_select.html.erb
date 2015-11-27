@@ -1,0 +1,4 @@
+<% # for selection of group %>
+
+<%= select_tag prefix + "[memberable_run_id]", options_for_select(select_options)  %>
+<%= hidden_field_tag  prefix + "memberable_type" , "Group" %>

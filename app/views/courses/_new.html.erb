@@ -1,0 +1,7 @@
+<% # new for courses input %>
+
+  
+<% universal_remote_form_for @course do |form| %>
+      <%= render_form_items form, @def_course_form_items, @course_form_items%>
+	  <%= form.submit '実行する' %>
+<% end %>

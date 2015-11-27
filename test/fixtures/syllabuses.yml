@@ -1,0 +1,62 @@
+# == Schema Information
+# Schema version: 70
+#
+# Table name: syllabuses
+#
+#  id                       :integer(11)   not null, primary key
+#  goal                     :text          
+#  detail                   :text          
+#  textbook                 :text          
+#  subtextbook              :text          
+#  judgment                 :text          
+#  base_subject             :text          
+#  relate_subject           :text          
+#  information              :text          
+#  old_name                 :text          
+#  old_name_comment         :text          
+#  comment                  :text          
+#  affiliation              :string(255)   
+#  affiliation_run_id       :integer(11)   
+#  affiliation_code         :string(255)   
+#  _old_subject_id          :string(255)   
+#  subject_type             :string(255)   
+#  kei                      :string(255)   
+#  gun                      :string(255)   
+#  english_name             :string(255)   
+#  _old_name_id             :string(255)   
+#  preverse_syllabus_run_id :integer(11)   
+#  _comment                 :text          
+#  new_subject_id           :string(255)   
+#  _created_by              :string(255)   
+#  year                     :string(255)   
+#  subtitle                 :string(255)   
+#  teaching_goal            :text          
+#  teaching_style           :text          
+#  question                 :text          
+#  run_id                   :integer(11)   
+#  create_at                :datetime      
+#  created_by               :integer(11)   
+#  create_comment           :text          
+#  delete_at                :datetime      
+#  deleted_by               :integer(11)   
+#  delete_comment           :text          
+#  version                  :integer(11)   
+#  count                    :integer(11)   
+#  since                    :datetime      
+#  till                     :datetime      
+#  parent_run_id            :integer(11)   
+#  root_run_id              :integer(11)   
+#  seq                      :string(255)   
+#  full_seq                 :text          
+#  marged_from              :string(255)   
+#  splitted_from            :string(255)   
+#  data_type                :string(255)   
+#  name                     :string(255)   
+#  fullname                 :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

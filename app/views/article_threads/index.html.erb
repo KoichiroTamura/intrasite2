@@ -1,0 +1,52 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】一般メッセージ											#
+# 【目的役割】本人宛のメッセージを表示する							#
+# 【コントローラ】controllers/article_threads_controller.rb							#
+# 【更新履歴】［作成］  2009/04/23  ishikawa  初版作成					#
+#             ［変更］  2009/06/25　田村						#
+#                      2009/07/08　田村 ----/--/--  -------
+#                      2009/09/12　田村　（木下，石川デザインの取り入れ）
+#                      2010/04/24　田村　　開始日をはずす（システム表示日に一本化する）．
+#                                        また，periodically remote call をやめる（queryを読まないので）
+#                                        							#
+# ---------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+
+%>
+
+<div id="message">
+
+	<div >
+		<form id="search">
+			<div class="query-window">
+				<!-- 日 -->
+				現在から<%= text_field_tag :display_months,  @display_months || 0, :size =>2 %>ヶ月前まで
+			</div>
+
+			<!-- receive_mode -->
+			<%= hidden_field_tag :receive_mode,  @receive_mode %>
+
+			<%= render_query_bar  %>
+
+			<% # inherit parameters %>
+		    <%= hidden_field_tag :display_mode,  @display_mode %>
+			<%= hidden_field_tag :article_class,  @article_class %>
+			<%= hidden_field_tag :forum,  @forum %>
+
+			<% # for causing periodical change %>
+			<%= hidden_field_tag :periodical_change,  0, :id => "periodical_change" %>
+		</form>
+	</div>
+
+	<%= observe_search 0.6%>
+
+	<% # cause periodical change to "periodical_change" to get new articles %>
+	<% # @periodical_change_span is time span(seconds) %>
+	<%= cause_periodical_change(@periodical_change_span) %>
+
+	<div class="output-container">
+		<%= render_collection  %>
+	</div>
+
+</div>

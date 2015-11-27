@@ -1,0 +1,6 @@
+<% # body of article_thread new form %>
+
+<% universal_remote_form_for @thread do |form| %>
+      <%= render_form_items form, @def_thread_form_items, [:articles] %>
+	  <%= form.submit '送信する' %>
+<% end %>

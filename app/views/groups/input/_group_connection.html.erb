@@ -1,0 +1,12 @@
+<% # entity of group_connection to select group 
+   # group_connections are ...
+   #   group_members : to user_infos
+   #   article_groups : to article
+   # locals are ...
+   #   prefix, assoc_name,  options
+%>
+
+<%  options[:collection_name] = "groups" %>
+
+<%= render_assoc_target_to_put group_connection, prefix, assoc_name,  options %>
+

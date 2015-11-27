@@ -1,0 +1,9 @@
+<% # entity of account assoc target-%>
+<% # locals 
+   #   prefix  : prefix for association of user_infos
+   #   assoc_name : name of association
+%>
+
+<%  options[:assoc_target_body_template] ||= "#{options[:collection_name]}/input/assoc_target_body" %>
+
+<%= render_assoc_target_to_put account, prefix, assoc_name, options %>

@@ -1,0 +1,41 @@
+<% # links to questionnaire related infos 
+   # locals
+   #   entity ... questionnairable entity(article)
+   #   base_div_id... id of div for replace to answer_responder %>
+   
+<table class="op-detail-inner">
+	<caption>アンケート</caption>
+    <tr>
+        <td>
+        	<%= link_to_remote_with_params "設問一覧",  
+                               :url    => {:controller => "article_threads", :action => "render_question_entities"}, 
+                               :params => {:base_div_id       => base_div_id,
+                                           :id                => entity.to_param} %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        	<%= link_to_remote_with_params "回答する",  
+                               :url    => {:controller => "article_threads", :action => "adding_answer_responder"}, 
+                               :params => {:base_div_id       => base_div_id,
+                                           :id                => entity.to_param} %>
+        </td>
+    </tr>
+	<% if entity.sender? %>
+	    <tr>
+	        <td>
+	        	<%= link_to "回答一覧と採点", {:controller => "article_threads", :action => "list_answer_responses",
+			                                :background_params => @background_params,
+										    :id => entity.to_param},
+										   :target => "_new" %>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	        	<%= link_to "回答の統計", {:controller => "answers", :action => "stochastics",
+			                             :id => entity.to_param},
+			                            :target  => "_new" %>
+	        </td>
+	    </tr>
+	<% end %>
+</table>

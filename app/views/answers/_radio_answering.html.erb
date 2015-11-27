@@ -1,0 +1,11 @@
+<% # form for radio button answer_responder queestionnaire %>
+
+<% fields_for prefix, answer, :index => answer.to_param do |form| %>
+    <%= form.hidden_field :questionnaire_run_id %>
+	<%  i = 0 %>	  
+	<% options.each do |option|%>
+	  <% i += 1 %>
+	  <%= form.radio_button :answer, i %><%= option %>
+	<% end%>
+
+<% end %>

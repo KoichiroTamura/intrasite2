@@ -1,0 +1,11 @@
+<% # for information to help locally %>
+
+<div class="local-info">	
+		<%= infos %>
+		<p align = "center">
+		<%= button_to_function "OK" do |page|
+   			parent = page.literal("this.up(1)")
+            page.toggle parent
+           end %>
+		</p>
+</div>

@@ -1,0 +1,8 @@
+<% # entity of member selection for new and edit form template -%>
+<% # locals 
+   #   prefix  : prefix for association of members
+   #   assoc_name : name of association
+
+   options[:collection_name] = "members"
+%>
+<%= render_assoc_target_to_put member, prefix, assoc_name, options %>

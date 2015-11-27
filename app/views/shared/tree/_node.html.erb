@@ -1,0 +1,42 @@
+<% # render tree structure
+   # node is the entity of node of tree structure models
+   # @node_name is the name of radio button tag for nodes
+   # @tree_options are options to find children 
+   # @target_fullname is fullname of targetted element 
+   #   if nil?, all tree nodes are shown.
+   # @node_template is partial template for node object
+   #   if blank?, tree_node.name is given as default
+   # @terminal_template is partial template for terminal object 
+   #   if blank?, nothing but node.name rendered. 
+   # @radio_button_options is options for radio button for each position.
+  
+   @radio_button_options ||= {}
+%>
+
+<% # show or hide children
+   show_or_hide = (@target_fullname.nil? || @target_fullname.start_with?(node.fullname))  ?  "block" : "none"  
+   # radio checked or not
+   checked      = ( @target_fullname == node.fullname ) 
+
+%>
+
+
+ 	<li id="li_<%= node.fullname.tr("|","") %>">
+ 		<%= radio_button_tag(@radio_name, node.fullname, checked, @radio_button_options)  %>
+		<% div_id = @radio_name + "_parent_#{node.id}" %>   
+	
+		<% if node.mark.blank? %>
+		    <% # node is a terminal %>
+		    <%= @terminal_template.blank? ? "<label> #{node.name} </label>" : render( :partial => @terminal_template, :object => node) %>
+		<% else %>
+		     <% link_name = @node_template.blank? ? "<label>#{node.name + node.mark}</label>" : render(:partial=> @node_template, :object => node) %>
+		    <%= link_to_function link_name, toggle_div(div_id) %>
+			<% if node.mark == Position::With_Singular_Leaf %>
+			    <% value = node.fullname + node.mark %>
+			    <%= radio_button_tag(@radio_name, value, value == @target_fullname, @radio_button_options)  %>
+		    <% end %>
+		    <ul id = "<%= div_id %>" style = "display:<%= show_or_hide %>">
+		        <%= render :partial => "shared/tree/node", :collection => node.children(@tree_options) %>	 
+		    </ul>
+		<% end %>
+    </li>

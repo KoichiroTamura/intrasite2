@@ -1,0 +1,35 @@
+<% # render banner schedule %>
+
+<% schedule = banner_schedule
+   start_day, end_day  = schedule.start_datetime, schedule.end_datetime
+   banner_end_day      = [end_day, j_end_of_week(start_day)].min
+   banner_end_wday     = banner_end_day.wday
+   left_empty_colspan  = start_day.wday
+   banner_colspan      = banner_end_wday - start_day.wday + 1
+   right_empty_colspan = 6 - banner_end_wday
+   continuing          = banner_end_day < end_day                                              # banner continues over the week 
+   continued           = schedule.banner_run_id != schedule.run_id                             # continued from previous week
+   banner_color        = schedule.created_by == @current_user.run_id ? "green" : "green_light" # owner of banner or not
+%>
+
+<tr>
+	<% if left_empty_colspan > 0 %>
+	  <td  class="st-c" colspan = "<%= left_empty_colspan %>">&nbsp;</td>
+	<% end -%>
+	  	
+	<td  class="st-c pointer" colspan = "<%= banner_colspan %>" <%= remote_call_for_schedule_detail(schedule) %>>
+		<div class="banner <%= banner_color %> st-ad-mpad">
+			  <% if continuing -%>
+				  <div class="st-ad-mr"></div>
+			  <% end -%>
+			  <% if continued -%>
+			      <div class="st-ad-ml"></div>
+			  <% end -%>
+			  <span class="te"><%= schedule.title %></span>
+		</div>
+	</td>
+		
+	<% if right_empty_colspan > 0 %>
+	  <td  class="st-c" colspan = "<%= right_empty_colspan %>">&nbsp;</td>
+	<% end -%>
+</tr>

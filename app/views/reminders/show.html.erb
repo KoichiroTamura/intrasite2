@@ -1,0 +1,61 @@
+
+<% javascript_tag do %>
+step=0;	
+<% end %>
+
+<div style="position:absolute">
+	<div class="container" id="information">
+		<pre>
+		（１）下記に記入し，記入後，「次のステップへ」進んでください．			
+		（２）続く画面で，イントラサイトからのメールの着信を待ち，受信後は，その指示に従ってください．
+			 メールは前もって登録されたアドレスに届きます．
+		</pre>
+
+		<div class="login-form">
+			<div id="flash_notice">
+				<%= render :partial => "shared/flash_notice" %>
+			</div>
+
+			<% form_remote_tag :url=>create_reminder_path,:html=>{:id=>"process_form"} do -%>
+
+				<table class="op-detail-inner">
+					<tbody>
+						<tr>
+							<th>
+								アカウント名
+								<%= local_information "はじめてのログインでは｢ユーザ名｣と同じにしてください．以降，「設定：パスワード変更｣メニューで（パスワードと同様）変更することが出来ます"%>
+							</th>
+							<td>
+								<%= text_field_tag  "name"  %>
+								
+							</td>
+						</tr>
+						<tr>
+							<th>
+								新パスワード
+								<%= local_information "ログイン以降，「設定：パスワード変更｣メニューで変更することが出来ます．セキュリティ上，頻繁に変更するのがよいでしょう．"%>
+							</th>
+							<td><%= password_field_tag "password", nil, :id => (password_id = "password_id"),:onchange=>"$('#{password_id}_dummy').value=$('#{password_id}').value" %>
+							<%= text_field_tag  "password_dummy", nil, :id=>"#{password_id}_dummy",:onchange=>"$('#{password_id}').value=$('#{password_id}_dummy').value",:style=>"display:none" %>
+							
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+				                <%= check_box_tag "show_pass", 1, false,
+                                      :onclick => "if (this.checked) p_type = '_dummy'; else p_type = ''; $('#{password_id}').style.display='none'; $('#{password_id}_dummy').style.display='none'; $('#{password_id}'+p_type).style.display='inline'; "%>
+									<%= label_tag "show_pass", "パスワードを表示する"%>	
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><%= submit_tag "次のステップへ",:onclick=>"this.form.style.display='none';$('form_processing').innerHTML='処理中です。しばらくおまちください';if(step==0){step=1;return true;}else{return false;}" %></td>
+						</tr>
+					</tbody>
+				</table>
+			<% end %>
+
+			<div id="form_processing"></div>
+		</div>
+	</div>
+
+</div>

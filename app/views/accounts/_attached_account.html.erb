@@ -1,0 +1,11 @@
+<% # for an entity of accounts attached to a user state %>
+
+<% entity = attached_account %>
+
+<tr class="user_info-tbl-tr" >
+<comment>	
+	<td><%= time_in_japanese_style(entity.since, :since, :short => true) %>〜<%= time_in_japanese_style(entity.till, :till, :short => true) %> </td>
+</comment>
+
+	<td><%=h entity.name %> </td>
+</tr>

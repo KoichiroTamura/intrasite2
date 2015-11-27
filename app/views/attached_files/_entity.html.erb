@@ -1,0 +1,5 @@
+<% # render entity of attached_files in collection rendering%>
+
+<tr>
+	<td><%= attached_file_link(entity) %><input type="hidden" name="attached_files[]" value="<%= entity.checksum %>"></td>
+</tr>

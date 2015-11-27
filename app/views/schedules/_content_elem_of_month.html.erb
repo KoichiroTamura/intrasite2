@@ -1,0 +1,14 @@
+<% # content element for month calendar %>
+
+<% schedule = content_elem_of_month # schedule is an Article. %>
+
+<% unless schedule.attribute_present?(:banner_run_id) -%>
+	<div <%= remote_call_for_schedule_detail(schedule) %>>
+		<% if all_day_long?(schedule) -%>
+		  <%= render :partial => "all_day_long_template", :locals => {:schedule => schedule}%>
+		<% else -%>
+		  <span class="te-t"><%= render_time_of_schedule(schedule) %></span>
+		  <span class="te pointer"><%= schedule.title %></span>
+		<% end %>
+	</div>
+<% end -%>

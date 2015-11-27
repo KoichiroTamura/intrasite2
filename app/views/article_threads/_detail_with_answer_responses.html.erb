@@ -1,0 +1,30 @@
+<% # answer responder filled by answers to a questionnaire article of which thread is @thread
+   # actually list of answer response articles associated with the thread 
+%>
+<div class="output-container">
+	<div class="op-set">
+		<div class="op-body">
+			<h3 class="title_h3">アンケート回答一覧</h2>
+			<div class = "article_thread_detail">
+				<table class="articles_in_tread_detail">
+					<%= render_entity_items @thread, @def_items, @thread_detail_items %>
+				</table>	
+			</div>
+			
+			
+			<div id = "article_thread_detail" > 
+				<table class="articles_in_thread_detail">
+						<tbody>
+							<% @articles.each do |article| -%>
+								<tr><td>
+						       		<%= render :partial => "articles/answer_response", :locals => {:entity => article} %>
+						   		</td></tr>
+						    <% end -%>
+						</tbody>
+				</table>			
+			</div>
+		</div>
+	</div>
+</div>			
+
+

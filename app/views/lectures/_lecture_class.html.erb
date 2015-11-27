@@ -1,0 +1,5 @@
+<% # lecture class and grade %>
+
+		   	      <tr><td><%= hierarchy_style(lecture_class.aff_fullname, :without => %w{中京大学 学外 学部 大学院 }) %><%= "（#{lecture_class.party}）" unless lecture_class.party.blank? %>：
+				           <%= hierarchy_style(lecture_class.sta_fullname, :without => %w{学部生 院生 }) %>
+				  </td></tr>

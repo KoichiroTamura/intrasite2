@@ -1,0 +1,65 @@
+# == Schema Information
+# Schema version: 70
+#
+# Table name: articles
+#
+#  id                 :integer(11)   not null, primary key
+#  sort_id            :text          
+#  asort_id           :text          
+#  title              :string(255)   
+#  body               :text          
+#  contact_to         :string(255)   
+#  priority           :string(255)   
+#  article_class      :string(255)   
+#  is_news            :string(255)   
+#  is_general         :string(255)   
+#  limit              :datetime      
+#  url                :string(255)   
+#  url_class          :string(255)   
+#  start_date         :date          
+#  end_date           :date          
+#  start_time         :time          
+#  end_time           :time          
+#  place_run_id       :integer(11)   
+#  non_shared_place   :string(255)   
+#  schedule_class     :string(255)   
+#  mail_to            :text          
+#  mail_bcc           :text          
+#  mail_cc            :text          
+#  _old_rec_id        :string(255)   
+#  _old_lectureID     :text          
+#  _old_parent        :string(255)   
+#  _old_place         :string(255)   
+#  _old_to_positionID :string(255)   
+#  _old_to_statusID   :string(255)   
+#  _old_to_groupID    :string(255)   
+#  _old_to_person     :text          
+#  _sender            :string(255)   
+#  _old_to_category   :string(255)   
+#  run_id             :integer(11)   
+#  create_at          :datetime      
+#  created_by         :integer(11)   
+#  create_comment     :text          
+#  delete_at          :datetime      
+#  deleted_by         :integer(11)   
+#  delete_comment     :text          
+#  version            :integer(11)   
+#  count              :integer(11)   
+#  since              :datetime      
+#  till               :datetime      
+#  parent_run_id      :integer(11)   
+#  root_run_id        :integer(11)   
+#  seq                :string(255)   
+#  full_seq           :text          
+#  marged_from        :string(255)   
+#  splitted_from      :string(255)   
+#  data_type          :string(255)   
+#  name               :string(255)   
+#  fullname           :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

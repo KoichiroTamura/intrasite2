@@ -1,0 +1,39 @@
+<% # for tree selection %>
+
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】木構造の要素をselect tagで選択する						#
+# 【呼出元】shared/tree_select				#
+#																		#
+# 【更新履歴】［作成］  2009/08/31  田村 初版作成					#
+#             ［変更］  			#
+#                       ----/--/--  -------								#
+# ---------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	# %>
+
+<%
+ # input parameters 
+ #  @selected_node : pre selected node 
+ #  @parent_node : parent node of option nodes
+ #  @tree_name   : tree_name
+ #  @selected_field_id  : hidden field id to have value of selected entity_id
+ #  @out : names to be suppressed
+
+%>
+
+
+ <%   (@parent_node.nil?  || (ch = @parent_node.children).blank?) and return
+      
+      pre_selected_node = ch.detect do |child| @selected_node.fullname.start_with?(child.fullname) end
+	  pre_selected = pre_selected_node ? pre_selected_node.to_param : nil
+      # for blank text of option, the value is parent node.
+      choices = "<option value = #{@parent_node.to_param}> </option>" + 
+                options_for_select_with_out( ch.map{|c|[c.name, c.to_param]},  pre_selected, @out)
+      # for next generation
+	  @parent_node = pre_selected ? Run.find_entity(pre_selected) : ch.first
+ %>
+
+	 <%= select_tag "#{@tree_name}[]", choices,   :onchange => "$('#{@selected_field_id}').value = this.value" %>
+	 
+	 <%= render :partial => "shared/tree/node_select" %> 
+ 

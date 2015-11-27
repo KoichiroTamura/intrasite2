@@ -1,0 +1,14 @@
+<% # for local help information %>
+
+<span >
+    <%= image_tag("icon/information.png", :size => "22x22",
+           :onclick => update_page do |page|
+	          target_div = page.literal("this.next()")
+	          page.replace_html target_div, :partial => "shared/local_information_notice", 
+	                                                         :locals => {:infos=>infos} 
+	          page.draggable(target_div)
+	          page.toggle(target_div)
+	       end )%>
+	<div style="z-index: 200; opacity: 1.0; cursor: move; position:absolute; display:none;"></div>
+	<% # to keep bubble above the view plane, position should be absolute %>  						 
+</span>

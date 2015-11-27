@@ -1,0 +1,13 @@
+<% # seminar_member/students new form  for updating enrollment by student 
+ %>
+
+<% new_record = @enrollment.new_record? %>
+
+<h3 class="title"><%= new_record ? "配属希望作成" : "配属希望更新" %></h3>
+
+<br />
+
+<% universal_remote_form_for @enrollment, :url => {:params => {:background_params => @background_params}} do |form| %>
+	  <%= render_form_items form %>
+	  <%= form.submit '実行する' %>
+<% end %>

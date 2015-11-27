@@ -1,0 +1,61 @@
+<% # for schedules %>
+
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】一般スケジュール											#
+# 【目的役割】本人宛のスケジュールを表示する							#
+# 【コントローラ】controllers/schedules_controller.rb							#
+# 【レイアウト】[views/schedules] 内										#
+#               [application.rhtml] 					#
+#               を標準レイアウトとして結合し出力する。					#
+#																		#
+# 【更新履歴】［作成］  2009/07/21　田村  初版作成					#
+#             ［変更］  ----/--/--  -------								#
+#                       ----/--/--  -------								#
+#                   2011/04/22　田村　石川デザインの適用　                     #
+# ---------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+
+%>
+
+
+
+<div id="schedules">
+	
+	<form id = "search">
+		<div class="query-window">
+
+			<%= select_tag :receive_mode, options_for_select( ["標準受信", "拡大受信","すべて"], @receive_mode ) %>
+			<% unless public_user? -%>
+				<%= label_tag :other_user_name, "　　（予定を知りたい人の）ユーザ名" %>
+				<%= text_field_tag :other_user_name, @other_user_name %>
+				<%= local_information "このユーザのスケジュールのうち，受信者または拡張カテゴリに自分が含まれれるもののみ表示されます." %>
+			<% end -%>
+	 	</div>
+	
+		<%= render_query_bar  %>
+		 
+		<% # heritage parameters %>
+		<%= hidden_field_tag :display_mode,  @display_mode %>				 	
+		<%= hidden_field_tag :forum,  @forum %>
+		
+		<% if @display_mode == "space_schedules" %>
+				<div class="cf float-ui">
+					<div class="left">
+						<div class="tree-box">
+					      <h3><%= Space.tree_root.name %></h3>	
+						  <% # recursively rendering tree structure %>
+					      <%= render_tree_structure  Space.tree_root, @space_span, :radio_name => "space_span" %>
+					    </div>
+				     </div>
+		         </div>
+		<% end %>
+	</form>
+	
+	<%= observe_search %>
+		 			
+	<div class="output-container">					 			
+		<%= render :partial => "collection" %>
+	</div>
+</div>	
+

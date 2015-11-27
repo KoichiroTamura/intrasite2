@@ -1,0 +1,11 @@
+<% # entity of thesis_introductions %>	
+<% @entity = entity %>
+
+<pre>
+	<%= @entity.content.gsub(/<p>|<\/p>/, "") %>
+</pre>
+
+<% if admin? %>
+	<p><%=  link_to_updating %></p>
+	<p><%=  link_to_deleting %></p>
+<% end %>	

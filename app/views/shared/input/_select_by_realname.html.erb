@@ -1,0 +1,46 @@
+<% # for selection of collection of entity_model  by instance's real name as entity owns.
+   # locals ...
+   #   form, entity, entity_model, assoc_name
+   #   entity might be nil
+
+   # entity_model is  UserInfo or  Group, for the moment
+%>
+
+	  
+		  <% prefix = prefix_for_form(form)
+             uuid = random_id
+			 select_template = "shared/input/select" 
+          %>
+		  
+			<% # comment out %>
+   		    <% #= datetime_select_for_since(form)%>
+	
+				  
+		  <% if entity.blank? %>
+				    実名で検索：<%= text_field_tag "real_name_#{uuid}" %>
+					   
+				    <div id = "<%= uuid %>">
+				    	<%= render :partial => select_template, 
+		                           :locals  => {:prefix => prefix, 
+                                                :model  => entity_model,
+                                                :select_options => []} %>
+					</div>
+					
+				    <%= observe_field_with_params  "real_name_#{uuid}",
+			                      :url    => {:action => :select_options_from_real_name}, # replace select_template with candidates.
+		                          :update => uuid,
+			                      :with   => "'real_name='+value",
+			                      :params => {:prefix => prefix,
+                                              :model => entity_model, 
+                                              :assoc_name => assoc_name,
+                                              :template => select_template } %>
+		  <% else %>
+		    <% if entity_model == "UserInfo" %>
+		           <%= user_info_detail_link(entity) %>
+				   <%= form.hidden_field :user_info_run_id %>
+			<% elsif  entity_model == "Group" %>
+				   <%= group_detail_link(entity) %>
+				   <%= form.hidden_field  :group_run_id %>
+			<% end %>
+
+		  <% end -%>

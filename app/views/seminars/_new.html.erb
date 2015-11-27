@@ -1,0 +1,13 @@
+<% # seminar new form %>
+
+<% new_record = @seminar.new_record? %>
+
+<h3 class="title"><%= new_record ? "新ゼミ作成" : "ゼミ更新" %></h3>
+
+<br />
+
+<% universal_remote_form_for @seminar do |form| %>
+      <%= form.hidden_field :affiliation_run_id %>
+	  <%= render_form_items form %>
+	  <%= form.submit '実行する', :disable_with => "実行中です．" %>
+<% end %>

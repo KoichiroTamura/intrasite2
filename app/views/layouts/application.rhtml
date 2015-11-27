@@ -1,0 +1,135 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】共通レイアウト										#
+# 【目的役割】レイアウト定義の無い全てのビューのレイアウトを定義する。	#
+# 【ビュー】レイアウト定義の無い全てのビューに結合される。				#
+# 【注意事項】このファイル内においては、余分なインデント、				#
+#             または、余分な改行を入れないで下さい。					#
+#
+# ＊重要！！！																				＊
+# ＊このファイルは、全てのビューファイルを実装後、application.rhtmlに共通化します。			＊
+# ＊全てのビューファイルを実装するまでは、個別にファイルを作成します。						＊
+# ＊このファイルを修正する場合は、コメントを含め全てを、他の全ファイルと同期を取って下さい。＊
+# ＊そうしないと、共通化できなくなり、冗長が発生してしまいます。							＊
+#
+#																		#
+# 【更新履歴】［作成］  2006/12/03  t.onishi  初版作成					#
+#             ［変更］  2007/01/14  t.onishi  スタイルシートリンク変更	#
+#                                             JavaScriptリンク変更		#
+#                                             イメージリンク変更		#
+#                                             IE DOCTYPE不具合対応		#
+#                                             metaテンプレート対応		#
+#                                             copyrightテンプレート対応	#
+#                       2007/02/04  t.onishi  フラグメントキャッシュ廃止#
+#                       2009.07.28  t.namima  メニュー時変動対応#
+#                       2009/08/16　田村　show time setting 関連変更
+#                       2009/09/25　田村　headerのpartial 化　（他のレイアウトでも共通に使用するため）
+#                       2010/03/22　田村　simulation_mode, show_time_modeの反映デザインの修正
+#                       2011/03/27　田村　ishikawa htmlの導入
+#                       2011/05/20　田村　simple calendarの埋め込み
+# ---------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	# %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	
+<%= render :partial => "layouts/header" %>
+
+<% # clear assert time as show_time %>
+<% controller.set_global_assert_time %>
+
+<% case @show_time_mode.to_i 
+    when 0
+      body_class = "now"
+      img_src   = "title.jpg"
+    when -1
+      body_class = "past"
+      img_src   = "title_past.jpg"
+    when  1
+      body_class = "future"
+      img_src   = "title_future.jpg"
+    else
+      fail ArgumentError, "'#{@show_time_mode}' is illegal @show_time_mode."
+  end
+%>
+
+<body  id = "id_of_body" class="<%= body_class %>">
+
+<% # login window to be slided down %>
+<div id = "login_part" style = "position:absolute; left:250px; top:-200px; z-index:1;display:none;"></div>
+
+	
+<% if @simulation_mode %>
+	<div id="simulation_bar">
+		<h1>シミュレーションモードで動作中</h1>
+	</div>
+<% end %>
+
+<div id="container">	
+	<div id="head_banner">
+
+			<h1><%= link_to_unless_current(image_tag(img_src), {:controller => 'home'}) %>
+			
+			</h1>	
+			<h2>
+				<div id = "page_jp_title">
+					<%= @menu_name %>
+				</div>
+			</h2>
+		    <%= local_information(@header_local_info) if @header_local_info %>
+			<ul>	
+				<li>
+					<% if @current_account && @current_user %>
+						<%=h @current_account.name %>&nbsp;（<%=h @current_user.category %>）&nbsp;&nbsp;
+					    <%# link_to_unless_current "旧アカウントとの統合", unions_path %>&nbsp;&nbsp;
+					    <%= link_to_unless_current "ログアウト", session_path, :method => :delete %>
+				    <% else %>
+					    <div id="head_banner_login">
+					    	<%= link_to_remote "ログイン", :url => {:controller => "/sessions", :action => "new"}, :method => :get %>
+						</div>
+					<% end %>
+				</li>
+				<li><%= link_to_unless_current "利用ガイド", help_infos_path(:help_name => "利用ガイド", :menu_name => "利用ガイド")  %></li>
+			</ul>
+	 </div>
+	   
+    <div class = "cf">
+		 			
+		<% # for each corner content %>
+		<div id="contents">
+			<div id="contents_i" class="cf">
+			     <%= yield :layout %>
+		    </div>
+		</div>		 	
+
+	
+    	<div id="nav_side">
+				<div class="menu-box">
+					<%= content_tag "h3", "表示日時",  :class =>"cursor-pointer", :onclick => toggle_div('show_time') %>
+					<div id="show_time">
+						<%= render :partial => 'layouts/show_time_setting_container' %>
+					</div>
+			    </div>
+			    
+				<div id = "layout_calendar" class="menu-box">
+	               <%= render :partial => "layouts/calendar_menu" %>
+				</div>
+				
+	
+		        <% # menu clasters to link to corner %>
+				<div id = "menu_clusters">
+					<%= render :partial => "corners/menu_clusters" %>
+				</div>
+		  </div>
+	
+	</div>
+	
+	<%= render :partial => "/layouts/footer" %>
+	
+</div>
+
+
+</body>
+
+</html>
+

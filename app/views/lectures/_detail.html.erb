@@ -1,0 +1,42 @@
+<% # pure detail for @lecture %>
+
+
+<div id="contents">
+	<div id="contents_i" class="cf">
+		<div id="working_div">
+			<h3><%= @menu_name %></h3>
+			<% if  @lecture.lecture_member? -%>
+				<%= link_to_exercise(@lecture) %>
+				<%= link_to_lecture_forum(@lecture) %>
+				<%= link_to_lecture_schedule(@lecture) %>	
+			    <br /><br />
+			<% end -%>
+			
+			   <table class="op-detail-inner">
+			   	   <% if @course.blank? -%>
+				        <tr><th colspan = 2>対象科目が指定されていません．</th></tr>
+				   <% else -%>
+				   	    <tr><th>科目名</th><th><%=h @course.name %></th></tr>
+						<tr><th>対象クラス</th>
+						    <% content_tag :td do -%>
+							  <%= render_collection_only @course_classes, 
+				                               :entity_template => "courses/course_class_list_entity",
+				                               :controller => "course_classes" %>
+				             <% end -%>
+						</tr>
+				   <% end %>
+	
+			   		<%= render_entity_items @lecture, @def_items, @lecture_items, :detail => true, :prompt => true %>
+			   </table>
+			   
+			   <%= tag "h3", :onclick => "$(this).next().toggle()", :class => "cursor-pointer" %>履修者（<%= @students.size %>名）↓  Click Here  ↓</h3>
+			   <div id = "enrollment" style = "display:none">
+				   <table class="op-detail-inner">
+						<% @students.each do |s| %>
+						     <tr><td><%= user_info_detail_link(s) %></td></tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+	</div>		
+</div>

@@ -1,0 +1,20 @@
+<% # rendering row of entity with detail 
+   # when click row, detail is got and shown below the row; 
+   # after that, the detail part is toggled.
+%>
+
+
+
+<% entity = entity_with_toggled_detail_call
+   div_id     ||= "#{controller}_#{entity.id}" 
+   def_items  ||= @def_items
+   list_items ||= @list_items 
+   odd_or_even = odd_or_even_row(entity_with_toggled_detail_call_counter)
+%>
+
+<% content_tag "tr", :class =>"pointer #{odd_or_even}", :onclick => get_detail_if_not_yet( entity, div_id, :params => {:background_params => @background_params} ) do %>
+  <%= render_entity_items entity, def_items, list_items %>
+<% end %>
+
+
+<tr id="<%= div_id %>" ><% # detail is to be loaded here. %></tr>

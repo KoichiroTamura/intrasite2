@@ -1,0 +1,15 @@
+<% # for helper "render_select_set_elements"
+
+   # display selected elements in set; not input as part of form
+   # locals
+   #   set                => set(array) of elements to be selected 
+   #   selected_elements  => string with comma seperated form
+ 
+   selected_set = selected_elements ? selected_elements.split(',').map(&:strip) : []
+%>
+   <% set.each do |element| %>
+      <%= check_box_tag element, 1, selected_set.include?(element), :disabled => true %>
+	  <%= element %>
+   <% end -%>
+
+   

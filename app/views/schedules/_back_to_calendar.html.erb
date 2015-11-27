@@ -1,0 +1,4 @@
+<% # back to calendar table template %>
+
+<% text ||= "カレンダーに戻る" %>
+<%= link_to_remote_with_params text, {:url => "schedules/search", :params =>  @background_params}%>

@@ -1,0 +1,10 @@
+<% # new for corner menue %>
+
+<h3 class="title"><%= @menu.new_record? ? "コーナーメニュー作成" : "コーナーメニュー修正" %></h3>
+
+<br />
+  
+<% universal_remote_form_for @menu do |form| %>
+      <%= render_form_items form, @def_form_items, @form_items%>
+	  <%= form.submit '実行する' %>
+<% end %>

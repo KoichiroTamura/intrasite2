@@ -1,0 +1,6 @@
+<% # detail of article thread  (= @entity)%>
+<% # actually list of articles associated with the thread %>
+
+<table class="article_thread_detail">
+<%= render_entity_items @entity, @def_items, [:articles], :detail => true %>
+</table>

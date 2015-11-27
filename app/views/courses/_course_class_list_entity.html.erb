@@ -1,0 +1,9 @@
+<% # for element of list of course_classes to a course entity %>
+
+<% course_class = course_class_list_entity  %>
+<tr  >
+	<td class="td1"><%= course_class.org_name_and_self_id.first%> </td>
+	<% unless @mobile%>
+		<td class="td4"><%= call_for_detail course_class, "対象クラス詳細", {}, {:target => "_new"} %></td>
+	<% end %>
+</tr>

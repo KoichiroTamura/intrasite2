@@ -1,0 +1,5 @@
+<% # states of history %>
+
+<tr class="pointer" <%= remote_call_for_detail( state, :params => {:mode => "history"} ) %>>
+	<%= render_entity_items( state) %>
+</tr>

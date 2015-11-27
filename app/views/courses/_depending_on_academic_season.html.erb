@@ -1,0 +1,16 @@
+<% # diviision depending on academic_year and season; to be reloaded when they are changed. %>
+		<div id = "depending_on_academic_season">
+			<%= hidden_field_tag :academic_year,  @academic_year %>
+			<%= hidden_field_tag :academic_season,  @academic_season %>
+
+			<% # tree_selection for organization %>
+			<%= render_tree_select_cluster @aff_root, @affiliation,
+					   :tree_name => "affiliation",
+                       :out => @out_of_selection_for_aff
+             %>
+			<%= render_tree_select_cluster @sta_root, @status,
+                       :tree_name => "status",
+                       :out => @out_of_selection_for_sta
+             %>
+		</div>
+		

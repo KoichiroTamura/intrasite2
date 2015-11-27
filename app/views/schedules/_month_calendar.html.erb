@@ -1,0 +1,22 @@
+<% # month calendar %>
+
+<div class = "op-control">
+				<%= notice "新予定記入方法：" %><%= local_information "新規に予定を記入するには予定開始日の空欄（カーソルがポインタになる部分）をダブルクリックします．"%>		
+
+	<ul>
+		<%= render :partial => "buttons_to_move_schedule"%>
+		<li class="title">
+			<%= @display_time.year %>年<%= @display_time.month %>月 	
+		</li>	
+	</ul>
+</div>
+
+<br /><% # necessary for Firefox; don't know why. %>
+
+<div id="schedule_table" class="op-body cf">
+			
+	<%= render :partial => "days_of_week" %>
+		
+    <%= render :partial => "week_elem_of_month", :collection => @schedules%>
+							
+</div>

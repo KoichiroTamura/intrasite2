@@ -1,0 +1,13 @@
+<%# layout for popup or new windows of not collection rendering %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <%= render :partial => "layouts/header" %>
+	<body>
+		<div id = "collection">
+			<div id = "working_div">
+				<%= yield %>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<script>step2=0;</script>
+
+<div class="container">
+	<div style="border:1px solid red;padding:1em;margin:1em;width:30em">
+		<pre>
+		本人確認のため、確認メールを送信しました.
+		メールを受信するまでこの画面を閉じないでください.
+	
+		（１）先ほど設定した「新パスワード」を確認のために下に再度記入し，
+			メールソフトを立ち上げて，イントラサイトからのメールの着信をお待ちください．
+			（数分かかることもあります）
+		（２）そのメールに記載された「標識数」をコピーし，
+			 下記の｢標識数｣の入力欄に貼り付けて，「次のステップへ」進んでください．
+			（メールが届かない場合は，登録されたメールアドレスに誤りがありますので，イントラweb委員会にお問い合わせください）
+		</pre>
+	</div>
+	
+	<div class="login-form">
+		<div id="flash_notice">
+			<%= render :partial => "shared/flash_notice" %>
+		</div>
+		
+		<% form_remote_tag :url=>update_reminder_path,:html=>{:id=>"process_form"} do -%>
+			<%= hidden_field_tag "name",params[:name] %>
+			<table class="op-detail-inner">
+				<tbody>
+					<tr>
+						<th>
+							新パスワード
+							<%= local_information "前の画面で設定したものです．確認のため，もいちど記入してください．" %>
+						</th>
+						<td><%= password_field_tag "password", nil, :id => (password_id = "password_id"),:onchange=>"$('#{password_id}_dummy').value=$('#{password_id}').value" %>
+						<%= text_field_tag  "password_dummy", nil, :id=>"#{password_id}_dummy",:onchange=>"$('#{password_id}').value=$('#{password_id}_dummy').value",:style=>"display:none" %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							標識数
+							<%= local_information "確認メールに書かれたものです．コピーしてここに貼り付けてください．" %>
+						</th>
+						<td><%= text_field_tag "code_on_email", nil %></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+			                <%= check_box_tag "show_pass", 1, false,
+                                  :onclick => "if (this.checked) p_type = '_dummy'; else p_type = ''; $('#{password_id}').style.display='none'; $('#{password_id}_dummy').style.display='none'; $('#{password_id}'+p_type).style.display='inline'; "%>
+								<%= label_tag "show_pass", "パスワードを表示する"%>	
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><%= submit_tag "次のステップへ",:onclick=>"this.form.style.display='none';$('form_processing').innerHTML='処理中です。しばらくおまちください';  if(step2==0){step2=1;return true;}else{return false;};" %></td>
+					</tr>
+				</tbody>
+			</table>
+		<% end %>
+
+		<div id="form_processing"></div>
+		<div class="information">
+		</div>
+	</div>
+</div>

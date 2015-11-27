@@ -1,0 +1,26 @@
+<% # common template for "user_infos/index" and "group_infos/index"%>
+
+
+<div class="cf float-ui">
+	<form id = "search">	        	  
+					
+		<%= render_query_bar %>
+		
+		<div class="left">
+			<div class="tree-box">			
+		        <% # rendering recursively affiliation and status tree structure %>
+		        <%= render :partial => "shared/aff_and_sta_tree" %>
+			</div>
+		</div>
+	</form>	
+
+	<div class="output-container ui-list right">			
+       <%= render_collection @collection, :entity_template => "shared/entity_with_remote_detail_call" %>
+    </div>
+</div>    
+
+
+<%= observe_search %>				
+
+<%= render_org_dependency_script %>    	
+

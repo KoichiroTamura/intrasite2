@@ -1,0 +1,42 @@
+<% # association input form for lecture_course_classes 
+   # choose course_classes for a lecture from set of course_classes each of which belongs to course of the lecture %>
+   
+<% 
+   # locals :
+   #   association ... association with collection of assoc_targets
+   #   form   ...    form for assoc_target
+   #   options ... :single, :only_new, :collection_name, :item_name, :entity_template, :legend, :assoc_count
+
+   assoc_name      = association.assoc_name.to_s
+   prefix          = prefix_for_form(form) + "[#{assoc_name}]"
+   base_div_id     = assoc_name + random_id  #should be unique in page.
+   options ||= {}
+   options[:base_div_id] = base_div_id
+%>
+
+<% assoc_collection = options[:only_new] ? association.find_all(&:new_record?) : association %>  
+
+<%
+   lecture = form.object
+   lecture_run_id = lecture.run_id
+%>
+<% course_class_option_set = @course_classes.map(&:org_name_and_self_id) %>
+<% 
+   # collection of pair of org_name and run_id of each course_class
+   div_class_name  = options[:div_class_name] || "lecture_course_classes" 
+%>
+
+   <% # collection of course class candidates with checkbox to select %>
+   <% course_class_option_set.each do |pair| %>
+	   <%  org_names, cc_run_id = *pair
+           candidates = lecture.lecture_course_class_with_cc(cc_run_id) %>
+       <%    unless candidates.blank?  # lecture has been associated with this course_class; could be multiple. %>
+	   <%	   candidates.each do |candidate| %>
+	   <%=	     render_lecture_course_classes(prefix, div_class_name, cc_run_id, org_names, candidate, true) %>
+	   <%      end %>	
+       <%    else  # no lecture_course_class to associate lecture with this course_class %> 
+	   <%      candidate = lecture.lecture_course_classes.build()  %> 
+	   <%=	   render_lecture_course_classes(prefix, div_class_name, cc_run_id, org_names, candidate, false) %>
+       <%    end %>
+ <% end -%>
+

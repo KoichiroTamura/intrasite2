@@ -1,0 +1,46 @@
+<% # template to render tree selection with hidden field and observe_field function 
+   # locals ...
+   #    root : root of the tree
+   #    pre_selection : pre selected tree node(record object)
+   #    options : form  => form proxy
+   #              method => method to get the object and object name
+   #              tree_name => name of the tree and name of hidden field when no form given.
+   #              out => node name to omit out of selection
+%>
+
+	<% form   = options[:form]    
+       method = options[:method]  
+	   tree_name = options[:tree_name] 
+       uuid   = random_id
+       hidden_field_id   = "selected_#{uuid}"
+       options[:selected_field_id]   = hidden_field_id
+	   locals = {:root          => root,
+                 :pre_selection => pre_selection,
+                 :assert_time   => @assert_time,
+                 :options       => options
+                 }
+    %>
+	<div id = "<%= uuid %>">
+		<% if pre_selection == root %>
+		  すべて（＊次の選択によって対象を限定できる）<br />
+		<% elsif pre_selection.nil?%>
+		  指定なし（＊次の選択によって対象を指定する）<br />
+        <% end %>
+		<%= render :partial => "shared/tree/selection",
+                   :locals  => locals
+         %>
+	</div>
+	
+	<% # keep selected node run_id of tree selection %>
+	<% if form %>
+    	<%= form.hidden_field method, :id => hidden_field_id %> 
+	<% else %>
+		<%= hidden_field_tag tree_name, pre_selection.to_param, :id => hidden_field_id %>
+	<% end %>
+	
+	<%= observe_field_with_params  hidden_field_id, 
+                      :url    => {:action => :update_tree_select},
+                      :with   => "'selected_entity='+value",
+                      :params => {:tree_select_div_id   => uuid,
+                                  :locals => locals} %>
+	

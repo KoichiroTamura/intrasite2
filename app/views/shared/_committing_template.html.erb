@@ -1,0 +1,13 @@
+<% # wrapper for committing template 
+   # @entity ... entity for committing
+   # locals
+   #   content_template  ... template for body of committing content %>
+   
+<div entity_id = "<%= @entity.entity_id %>" >
+
+  <%= validity_error_holder :base %>
+
+  <%= render :partial =>  content_template %>
+
+</div>
+

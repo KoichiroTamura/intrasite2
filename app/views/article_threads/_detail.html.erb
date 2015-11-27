@@ -1,0 +1,29 @@
+<% # detail of article thread  (= @thread)
+   # actually list of articles associated with the thread 
+%>
+
+<div class= "op-table">
+	<% unless @articles.blank? %>
+		<table>
+			<tbody>
+				<tr>
+				   <%= render_entity_items @thread, @def_items, @thread_detail_items %>
+			   </tr>
+			</tbody>
+		</table>	
+	
+		<div id = "article_thread_detail" >
+			<table class="articles_in_thread_detail">
+				<tbody>
+					<% @articles.each do |article| -%>
+						<tr><td>
+				       		<%= render :partial => @article_template, :locals => {:entity => article} %>
+				   		</td></tr>
+				    <% end -%>
+				</tbody>
+			</table>
+			<% # responder input form is set bottom of this div %>
+		</div>
+	<% end %>
+</div>
+

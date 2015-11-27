@@ -1,0 +1,4 @@
+<% # calendar in left side nav %>
+
+<h3 onclick="$(this).next().toggle()" >カレンダー</h3>
+<%= render :partial => "schedules/simple_calendar", :locals => {:display_time => @show_time} %>

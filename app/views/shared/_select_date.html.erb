@@ -1,0 +1,31 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】select date 共有部分テンプレート						#
+# 【目的役割】表示日選択タグを表示					#
+# ［変更］　2009/08/18　田村
+# input parameters 
+#  @display_time is pre_selected time
+#  prefix(default "date"), 
+#  start_year(default 2001), end_year(default 1 year later)   #
+#  select_time(default false) whether to show select_time or not
+# output parameters
+#  params[prefix][:year], params[prefix][:month], params[prefix][:day]
+#  params[prefix][:hour], params[prefix][:minute]----------------------	#
+# ---------------------------------------------------------------------	# %>
+
+<% 
+  now = @show_time
+  time        ||= (@display_time || now)
+  prefix      ||= "date"
+  start_year  ||= 2001
+  end_year    ||= now.year + 1
+  select_time ||= false
+%>
+
+<%= select_year time, :start_year => start_year, :end_year => end_year, :prefix => prefix %>
+<%= select_month time, :use_month_numbers => true, :prefix => prefix  %>
+<%= select_day time, :prefix => prefix %>
+<% if select_time  %>
+  <%= select_hour( time, :prefix => prefix ) %>:
+  <%= select_minute( time, :prefix => prefix ) %>
+<% end %>

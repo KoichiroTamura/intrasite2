@@ -1,0 +1,45 @@
+# == Schema Information
+# Schema version: 70
+#
+# Table name: seminar_students
+#
+#  id               :integer(11)   not null, primary key
+#  reason           :text          
+#  _old_seminar_id  :string(255)   
+#  seminar_run_id   :integer(11)   
+#  _old_rec_id      :string(255)   
+#  _created_by      :string(255)   
+#  created_by       :integer(11)   
+#  _student_name    :string(255)   
+#  _student_section :string(255)   
+#  _email_address   :string(255)   
+#  _accept          :string(255)   
+#  is_accept        :boolean(1)    
+#  _student_info_id :string(255)   
+#  year             :string(255)   
+#  run_id           :integer(11)   
+#  create_at        :datetime      
+#  create_comment   :text          
+#  delete_at        :datetime      
+#  deleted_by       :integer(11)   
+#  delete_comment   :text          
+#  version          :integer(11)   
+#  count            :integer(11)   
+#  since            :datetime      
+#  till             :datetime      
+#  parent_run_id    :integer(11)   
+#  root_run_id      :integer(11)   
+#  seq              :string(255)   
+#  full_seq         :text          
+#  marged_from      :string(255)   
+#  splitted_from    :string(255)   
+#  data_type        :string(255)   
+#  name             :string(255)   
+#  fullname         :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

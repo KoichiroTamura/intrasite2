@@ -1,0 +1,28 @@
+<% # detail of report(= @entity) %>
+
+<%= render :partial => "shared/flash_notice"%>
+
+<div class="output-container ui-list">
+	<div class="op-set">
+	
+	<h3>レポート詳細</h3>
+
+	<table class="op-detail_inner">
+        <%= render_entity_items @entity, @def_items, @detail_items, :prompt => true, :detail => true %>
+    </table>
+		
+	<% if @has_judged -%>		
+		<h3>添削，コメント，採点</h3>
+		<table class="op-detail_inner">
+			<%= render_entity_items @report_comment, @def_report_comment_items, @report_comment_items, :prompt => true, :detail => true %>
+		</table>
+	<% elsif @one_of_lecture_teachers -%>
+		<div class="op-control">
+	    	<%= remote_link_to_new "添削・採点作成", :controller => "report_comments", :params => {:report => @entity} %>
+			<%= local_information "レポートを添削し，コメントを書き，採点を行います．"%>
+		</div>
+	<% end %>
+	
+	</div>
+</div>
+

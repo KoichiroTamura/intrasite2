@@ -1,0 +1,37 @@
+# == Schema Information
+# Schema version: 70
+#
+# Table name: personal_label_articles
+#
+#  id             :integer(11)   not null, primary key
+#  article_run_id :integer(11)   
+#  article_id     :integer(11)   
+#  user_run_id    :integer(11)   
+#  label_name     :string(255)   
+#  run_id         :integer(11)   
+#  create_at      :datetime      
+#  created_by     :integer(11)   
+#  create_comment :text          
+#  delete_at      :datetime      
+#  deleted_by     :integer(11)   
+#  delete_comment :text          
+#  version        :integer(11)   
+#  count          :integer(11)   
+#  since          :datetime      
+#  till           :datetime      
+#  parent_run_id  :integer(11)   
+#  root_run_id    :integer(11)   
+#  seq            :string(255)   
+#  full_seq       :text          
+#  marged_from    :string(255)   
+#  splitted_from  :string(255)   
+#  data_type      :string(255)   
+#  name           :string(255)   
+#  fullname       :string(255)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

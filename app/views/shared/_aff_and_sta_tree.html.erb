@@ -1,0 +1,14 @@
+<% # render affiliation and status tree
+   # @affiliation is target fullname of affiliation 
+   # @status is target fullname of status %>
+
+
+	<div id="div_affiliation">
+		<h3>所属</h3>
+	    <%= render_tree_structure Affiliation.tree_root, @affiliation, :radio_name => "affiliation" %>
+	</div>
+	<br />
+	<div id="div_status">
+		<h3>ステータス</h3>
+		<%= render_tree_structure Status.tree_root,      @status,      :radio_name => "status" %>
+	</div>

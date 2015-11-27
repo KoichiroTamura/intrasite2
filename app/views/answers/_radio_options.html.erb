@@ -1,0 +1,10 @@
+<% # radio options for question entity in questionnaire %>
+
+
+
+	<%  i = 0 %>	  
+	<% options.each do |option|%>
+	  <% i += 1 %>
+	  <%= radio_button_tag "radio_button", i, false, :disabled => true %><%= option %>
+	<% end%>
+

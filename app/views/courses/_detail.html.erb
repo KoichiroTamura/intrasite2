@@ -1,0 +1,24 @@
+<% # for detail of course %>
+<td colspan = 4 class="op-set">
+	<table class="op-table op-detail op-w4">
+		<tbody>
+			<tr ><th>対象クラス：</th>
+				<%= render_entity_items @course, @def_items, [:course_classes] %>
+			</tr>
+			<tr ><th>授業：</th>
+				<%= render_entity_items  @course,  @def_items, [:lectures] %>
+			</tr>
+		</tbody>
+	</table>
+	<% if admin? -%>
+	<div class = "op-control cf">
+		<ul>
+			<li>
+				<%= link_to_updating(@course, "科目を更新する") %>
+				<%= local_information "対象クラスや授業を十分絞り込んでから行ってください．絞り込みが足りない場合，多数の連結のため，表示に時間がかかります．"%>
+			</li>
+			<li><%= link_to_deleting(@course, "科目を削除する") %></li>
+		</ul>
+	</div>
+	<% end -%>
+</td>

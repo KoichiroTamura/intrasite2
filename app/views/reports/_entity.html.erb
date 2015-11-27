@@ -1,0 +1,7 @@
+<% # submitted report(= entity) to an exercise %>
+
+<tr class="pointer <%=odd_or_even_row(entity_counter)%>" <%= remote_call_for_detail(entity) %>>
+	
+  <%= render_entity_items(entity) %>
+
+</tr>

@@ -1,0 +1,5 @@
+<% # render body of group_connection assoc_target %>
+
+
+<%= render :partial => "shared/input/select_by_realname", 
+           :locals  => {:form => form, :entity => assoc_target.group, :assoc_name => assoc_name, :entity_model => "Group"} %>

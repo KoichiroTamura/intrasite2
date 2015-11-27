@@ -1,0 +1,55 @@
+﻿<% # login page 
+%>
+
+<div class="login-form">			
+		
+	<%= render :partial => "shared/flash_notice" %>
+		
+	<% if @logged_in  # already logged in %>
+		<p>すでに別のページでログインされているため，ここから再度ログインすることはできません .<br />
+		（ヘッダバナーの｢ログアウト｣をクリックすれば，他のログインが解除され，ここからログインできるようになります．）</p>
+	<% else %>
+		<% form_tag session_path do -%>
+			<table class="op-detail-inner">
+				<tbody>
+					<tr>
+						<th>アカウント名</th>
+						<td><%= text_field_tag  "account[name]", @login.name   %></td>
+					</tr>
+					<tr>
+						<th>パスワード</th>
+						<td>
+							<%= password_field_tag "account[password]", @login.password, :id => (password_id = "password_id")  %><br />
+				            <%= check_box_tag "show_pass", 1, false,
+	                                  :onclick => "if (this.checked) p_type = 'text'; else p_type = 'password';$('#{password_id}').type = p_type;" %>
+							<%= label_tag "show_pass",  "パスワードを表示する"%>	
+							<p>
+								<%= link_to "新パスワード設定へ",:controller=>"reminder" %><br />
+								<span style = "font-size:x-small;">（パスワードを忘れた場合も）</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><%= image_submit_tag image_path('LoginButton.jpg') %></td>
+					</tr>
+				</tbody>
+			</table>
+		<% end %>
+		
+		<hr>
+		<ul>
+			<li>
+			学外の方は、<br />
+            アカウント名：guest，&nbsp;&nbsp; パスワード：sccs<br />
+			とすれば、「ゲストユーザ」としてログインできます。
+			</li>
+			
+			<li>
+			ログイン後は、使用上の禁止事項も書いてありますので、「ヘルプ：セキュリティ規定」を必ずご一読ください．
+			</li>
+		</ul>
+	<% end -%>
+	
+	<p style="text-align: center;""><%= link_to "ログインを取りやめる", :controller => "/home" %></p>
+</div>
+

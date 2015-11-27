@@ -1,0 +1,8 @@
+<% # for selection of collection to choose dependee as an assoc_target
+   # prefix is param_name for assoc_target(assoc_entity) foreign key to point assoc_owner.
+   #   inheritting ancestor owners
+   # selecte_options is choices for selection 
+   # setting attribute is "run_id"
+%>
+
+<%= select_tag( prefix, options_for_select(select_options.to_a) ) %>

@@ -1,0 +1,9 @@
+<h3 class="title">記録の訂正</h3>
+
+<% universal_remote_form_for @entity do |form|%>
+      <%= form.hidden_field :since %>
+	  <% @form_items -= [:since] %>
+	  <%= render_form_items form %>		
+      <%= submit_tag '訂正実行' %>
+<% end %>
+

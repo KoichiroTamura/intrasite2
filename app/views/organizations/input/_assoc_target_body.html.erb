@@ -1,0 +1,49 @@
+<% # body of organization assoc_target %>
+		
+		<% default_options = {:aff_root => Affiliation.tree_root,
+                              :sta_root => Status.tree_root}
+           organization = assoc_target
+		   aff_root = options[:aff_root] || default_options[:aff_root]
+		   aff_root.is_a?(String) and aff_root = Run.find_entity(aff_root)
+		   sta_root = options[:sta_root] || default_options[:sta_root]
+		   sta_root.is_a?(String) and sta_root = Run.find_entity(sta_root)
+		%>
+		
+        <%= form.hidden_field :_states_to_be_locked %>
+		
+		<% if show_item?(options, :since) -%>	
+			 <hr />
+			    <%= datetime_select_for_since(form, :since, options)%>
+			 <hr />
+		<% end -%>
+		
+		<% if show_item?(options, :seq) -%>	
+		    <hr />		
+		    順位<%= form.text_field(:seq, :size => 3) %>
+			<hr />	
+	    <% end -%>
+	
+		
+		<p>所属単位
+	    <%= render_tree_select_cluster  aff_root,
+	                                    organization.org_affiliation,
+                                        :form      => form,
+                                        :method    => "affiliation_run_id",
+	                                    :out       => options[:out_of_selection_for_aff]
+	    -%></p>
+
+		<% if show_item?(options, :post) -%>
+		     <p>（ポスト<%= form.text_field(:post) %>）</p>
+		 <% end -%> 
+	
+		<p>ステータス
+		<%= render_tree_select_cluster  sta_root,
+	                                    organization.org_status,
+                                        :form      => form, 
+                                        :method    => "status_run_id",
+	                                    :out       => options[:out_of_selection_for_sta]
+	     %></p>
+		 
+		 <% if show_item?(options, :title) -%>
+		     <p>（タイトル:<%= form.text_field(:title) %>）</p>
+		 <% end -%> 

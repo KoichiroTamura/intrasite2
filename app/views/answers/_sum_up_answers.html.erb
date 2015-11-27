@@ -1,0 +1,15 @@
+<% # for summing up answers for each question in stochastics %>
+
+<table>
+	<tr><th>選択肢</th>
+		<% (1..count_array.size).each do |i| %>
+		   <td><%= i %></td>
+		<% end -%>
+	</tr>
+	<% i = 0 %>
+	<tr><th>回答率（％）</th>
+		<% count_array.each do |ratio|%>
+		  <td><%= sprintf("%.1f", ratio) %></td>
+		<% end -%>
+	</tr>
+</table>

@@ -1,0 +1,8 @@
+ <% # render query bar with query = [prompt, query_item, default_value] %>
+
+ <% 
+   prompt, query_item, default_value = *query
+ %> 
+ 
+ <%= label_tag query, prompt, :class => "query_label_tag" %>
+ <%= text_field_tag  "query[#{query_item}]", default_value %>

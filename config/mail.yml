@@ -1,0 +1,10 @@
+development:
+     server: localhost
+     host_name: localhost
+     from: localuser@localhost
+     to: 
+
+production:
+     server: localhost
+     host_name: localhost
+     from: localuser@localhost

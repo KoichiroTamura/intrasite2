@@ -1,0 +1,7 @@
+<% # index page for corners %>
+<% # only for management by admin %>
+
+<%= render :partial => "shared/flash_notice" %>
+
+<%= render_collection @collection, 
+                      :table_header => "shared/head_item" %>

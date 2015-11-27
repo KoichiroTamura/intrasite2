@@ -1,0 +1,11 @@
+<% # account new form %>
+
+<h3 class="title"><%= @account.new_record? ? "新アカウント作成" : "アカウント更新" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @account do |form| %>
+	  <%= render_form_items form, @def_account_form_items, @account_form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>
+

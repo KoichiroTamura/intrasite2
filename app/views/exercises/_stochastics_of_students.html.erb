@@ -1,0 +1,6 @@
+<% # stochastics of students for exercise %>
+
+<h3 class="title_h3"><%= @menu_name %></h2>
+
+<%=  render(:partial => "shared/flash_notice") %>
+<%= render_collection_only @collection, :entity => "student" %>

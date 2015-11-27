@@ -1,0 +1,28 @@
+<% # assoc target body for user_info (supposed to be existing) %>
+		<% uuid      = random_id   # must be generated for each element template.
+           user_info = assoc_target
+           select_template = "shared/input/select_for_dependee"
+           prefix = prefix_for_form(form) + "_per_se_"
+           entity_model    = "UserInfo"
+          %>
+		  
+		  <% if user_info.blank? || user_info.new_record? %>
+				    実名で検索：<%= text_field_tag "real_name_#{uuid}" %>
+				    <div id = "<%= uuid %>">
+				    	<%= render :partial => select_template, 
+		                           :locals  => {:prefix => prefix,
+                                                :model  => entity_model,
+                                                :select_options => []} %>
+					</div>
+					
+				    <%= observe_field_with_params  "real_name_#{uuid}",
+			                      :url    => {:action => :select_options_from_real_name}, # replace select_template with candidates.
+		                          :update => uuid,
+			                      :with   => "'real_name='+value",
+			                      :params => {:prefix => prefix,
+                                              :model => entity_model, 
+                                              :template => select_template } %>
+		  <% else %>
+	           <%= user_info_detail_link(user_info) %>
+			   <%= hidden_field_tag prefix, user_info.run_id %>
+		  <% end -%>		

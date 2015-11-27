@@ -1,0 +1,7 @@
+<% # lecture class, grade and party(班) %>
+
+<tr><td>
+	<%= hierarchy_style(entity.aff_fullname, :without => @aff_and_sta_to_neglect) %>
+	<%= "（#{entity.party}）" unless entity.party.blank? %>：
+	<%= hierarchy_style(entity.sta_fullname, :without => @aff_and_sta_to_neglect) %>
+</td></tr>

@@ -1,0 +1,48 @@
+<script>step=0;submit_check=0</script><div style = "position:absolute;">
+
+<div id="working_div2">
+			<br>
+		<div class="ma">
+			ゲストユーザ（guest)へ：<br /><br />
+			IntraSite2は，コミュニティ活動を支援するためのサイトです．<br />
+			<br />
+			その一部は，部外の方々にも公開し，登録していただいたユーザには，送信と受信ができるようになっております．<br />
+			たとえば，メッセージ欄への送信や受信記事への返信などが可能になります．<br />
+			私どもの活動にご興味をもたれる方々に，さらに深いご理解をいただきたく，ぜひ登録のうえご参加ください．<br />
+			<br />
+		</div>
+</div>
+
+<div id="working_div"></div>
+
+<div id="back_to_list" style="display:none">
+			新規にパスワードを設定し，ログインするまでの手順を述べます．<br />
+			<br /><br />
+			１．<%= link_to "アカウント名とパスワードの設定",{:controller=>"reminder"} %>を開きます．<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			ここで，アカウント名として，ユーザ名と同じEメールアドレスを使用してください．<br />
+			<br />
+			２．Eメールアドレス確認のためのメールが届くまで，そのページで待ちます．<br />
+			<br />
+			３．メールの指示に従います。<br />
+			<br />
+			４．ブラウザをいったん終了し、ユーザ名（＝あなたのEメールアドレス）と設定パスワードでログインします．<br />
+			<br /><br />
+			以上です．IntraSiteのご利用をお待ちします．<br />
+			<br />
+			<br />
+</div>
+
+<div id="user_regist_form_div">
+<% universal_remote_form_for @user_info,:url=>{:action=>"create"} do |user_form| %>
+	  <%= render_form_items user_form %>
+	  <%= submit_tag '実行する',:onclick=>"if(submit_check==0){alert('ユーザ名が不良');return false;} $('user_regist_form_div').style.display='none';$('working_div2').innerHTML='処理中...';if(step==0){step=1;return true;}else{return false;}" %>
+<% end %>
+</div>
+<% javascript_tag do %>
+	$('user_regist_form_div').getElementsByTagName('td')[1].innerHTML += '<%= render_name_help_field %>';
+	$('user_regist_form_div').getElementsByTagName('td')[1].innerHTML += '<br />ユーザ名として，Eメールアドレスを使用してください．<br />'
+<% end %>
+<%= javascript_include_tag "user_regist" %>
+<%= render_name_helper %>
+</div>

@@ -1,0 +1,27 @@
+<%= flash[:error] %>
+<h1>統合するアカウントの認証</h1>
+<% form_tag :action=>"action" do %>
+<table>
+	<tr>
+		<th>旧ログイン名</th>
+		<td><select name="account_name">
+			<% @account.each do |t|%>
+				<option value="<%= t.name %>"><%= t.name %></option>
+			<% end %>
+		</select></td>
+	</tr>
+	<tr>
+		<th>パスワード</th>
+		<td><input type="password" name="password" id="form_pass" onChange="$('form_pass2').value=$('form_pass').value">
+		<input type="text" name="password" style="display:none" id="form_pass2" onChange="$('form_pass').value=$('form_pass2').value">
+		<input type="checkbox" onclick="Element.toggle('form_pass');Element.toggle('form_pass2');">パスワード表示
+		</td>
+	</tr>	
+</table>
+<%= submit_tag "送信"%>
+<% end %>
+
+<h2>注意</h2>
+<ul>
+	<li>統合後、旧ログイン名でのログインはできなくなります。</li>
+</ul>

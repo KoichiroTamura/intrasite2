@@ -1,0 +1,8 @@
+<% # rendering members of users %>
+
+<%= text %>
+<table>
+	<%= render :partial => "user_infos/member", 
+               :collection => members,
+               :locals => {:options => options, :html_options => html_options} %>
+</table>

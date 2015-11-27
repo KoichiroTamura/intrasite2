@@ -1,0 +1,26 @@
+h3.title{
+	background: url(../images/h3_under.jpg) 0 24px;
+	height: 30px;
+	color: #FFF;
+	padding: 5px 0 0 18px;
+}
+
+
+span.required {
+	font-weight: bolder;
+	color: red;
+	font-size: 90%;
+}
+
+fieldset{
+	padding: 20px;
+	margin-bottom: 20px;
+	border-top: 3px solid #CCC;
+	border-left: 3px double #CCC;
+	border-right: 3px double #CCC;
+	border-bottom: 3px groove #CCC;
+}
+
+legent {
+	padding: 0 20px;
+}

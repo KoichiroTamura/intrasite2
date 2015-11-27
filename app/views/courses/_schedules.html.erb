@@ -1,0 +1,29 @@
+<% # for lecture schedules　%>
+<div id = "collection">
+	
+	<h3>時間割（教員名は担当代表）</h3>
+	
+	<%= render :partial => "shared/flash_notice" %>
+
+
+	<table class="schedules_table">
+	   <tr>
+	     <th>時限</th>
+		 <th>月</th>
+		 <th>火</th>
+		 <th>水</th>
+		 <th>木</th>
+		 <th>金</th>
+		 <th>土</th>
+	   </tr>
+	   
+	   <%= render :partial    => "week_lecture_schedule", 
+	              :collection => @lecture_schedules %>
+	    
+	   <tr>
+	   	<td class="schedule_shift">集中</td><td colspan = 6><%= render :partial => "content_element", 
+	                                           :collection => @extra_schedules %></td>
+	   </tr>
+	   
+	</table>
+</div>

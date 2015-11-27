@@ -1,0 +1,87 @@
+<% # for an entity of article except answer_response %>
+
+<% has_read = entity.read? 
+   has_read or entity.has_read! 
+   star_div_id = "star_#{entity.id}" 
+   div_id = "article_#{entity.id}"     # div id for rendering detail of article 
+%>
+
+<% # header for an article %> 
+<div  class="msg-box">
+	<table class="msg-close">
+		<tbody>
+			<% content_tag :tr do %>
+				<% if registered? -%>
+			    	<% # render star %>
+					<% content_tag :td, 
+				           :class =>  "msg-l", 
+				           :onclick => remote_call_for_action_on_entity(:check_star, entity, 
+		                                                                :controller => "article_threads",
+				                                                        :params => {:latest_article => entity.id, :div_id => star_div_id})  do %>
+						 <% content_tag :span, :id => star_div_id do %>
+						     <%= render :partial => "article_threads/star", :locals => {:has_star => entity.star? } %>
+						 <% end -%>
+				    <% end -%>
+				<% end -%>
+				<% content_tag :td, :class => "pointer", :onclick =>  toggle_div(div_id) do %>
+				    <table>
+				    	<tr>
+				       		<%= render_entity_items entity, @def_article_items, @article_list_items %>
+					   </tr>
+					</table>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<% # detail of an article %>
+<% display_style = if @display_mode == "messages" 
+                       has_read ? "none" : "block" 
+                   else # schedule mode
+                       "block" 
+                   end
+%>
+
+<div  id = "<%= div_id %>" class="msg-box msg-open-m" style = "display: <%= display_style %>">
+	<table class = "msg-open">
+		<tbody>
+			<tr>
+				<td class="bodytext" colspan="2">
+					<%= entity.content %>
+					<table class="op-detail-inner">
+						<tbody>
+				            <%= render_entity_items entity, @def_article_items, @article_detail_items, :detail => true, :prompt => true %>
+						</tbody>
+					</table>
+					
+				</td>
+			</tr>
+			
+			<tr>
+				<%= render_entity_items entity, @def_article_items, [:deleting]  %>	
+			</tr>
+			
+			<% if registered? -%>	
+				<tr class="msg-bottom">
+					<td class="op-control" colspan="2">
+					   <% responder_form_div = "article_thread_detail"  %>	
+					   <% if entity.article_class == Article::Questionnaire_Class %>	
+						   <%= render :partial => "questionnaires/links_to_questionnaire",
+				                      :locals  => {:entity => entity, :base_div_id => responder_form_div} %>	     		   
+				       <% elsif entity.article_class !=  Article::Questionnaire_Answer_Class  # then link to standard responder making -%>
+					        <ul class="cf">
+								<li><%= image_tag("icon/reply.gif", :size=>"20x20", :alt=>"単独返信") %>
+									<%= link_to_responding(entity, responder_form_div, :responding_to => "SINGLE") %>
+								</li>
+					            <li><%= image_tag("icon/reply_all.gif", :size=>"24x20",  :alt=>"全員返信") %>
+							        <%= link_to_responding(entity, responder_form_div, :responding_to => "ALL") %>	
+								</li>
+							</ul>																																	   
+						<% end -%>
+			        </td>
+				</tr>
+			<% end -%>
+	    </tbody>
+	</table>	
+</div>	   

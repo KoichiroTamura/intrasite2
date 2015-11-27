@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<%= render :partial=>'layouts/meta' %>
+		<%= stylesheet_link_tag :all, :media=>"all" %>
+		<%= javascript_include_tag :defaults %>
+		<title>Intrasite2 For Mobile</title>
+		<style type="text/css">
+		div.mobile-home {
+		background:url('<%= image_path 'mobile/mobile_top_back.jpg'%>') center top no-repeat;
+		};
+		</style>		
+	</head>
+	<body>
+		<div align="center">
+			<%= yield :layout %>
+		</div>
+	</body>
+</html>

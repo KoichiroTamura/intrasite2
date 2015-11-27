@@ -1,0 +1,9 @@
+<% # article as assoc_target of article_thread %>
+
+<% base_div_id = options[:base_div_id] 
+   counter_class = base_div_id + "_counter" %>
+  
+	<% fields_for prefix, article, :index => article.to_param do |article_form| %>
+	    <%= article_form.hidden_field :seq, :class => counter_class  %>
+        <%= render_form_items article_form, @def_article_form_items, @article_form_items %>
+    <% end %>

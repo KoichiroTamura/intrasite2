@@ -1,0 +1,10 @@
+<% # @entity(thesis presentation schedule) new form %>
+
+<h3 class="title"><%= @thesis_status + "発表予定" + (@entity.new_record? ? "作成" : "更新") %></h3>
+
+<br />
+   
+<% universal_remote_form_for @entity do |form| %>
+	  <%= render_form_items form, @def_form_items, @form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

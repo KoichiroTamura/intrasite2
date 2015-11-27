@@ -1,0 +1,14 @@
+<% # accounts index  %>
+
+
+<div class="input_form">
+  <form id = "search">	
+  	<%= render_query_bar  %>
+  </form>
+</div>
+
+<%= observe_search(0.7) %>
+				 
+<%= render_collection @collection, :table_header => "index_item" %>
+
+

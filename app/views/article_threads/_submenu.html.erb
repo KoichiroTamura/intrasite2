@@ -1,0 +1,14 @@
+<% # receive mode selection by tab %>
+
+<div class = "op-tab">
+	<ul class="cf">
+		<% (0..3).each do |i|%>
+			<% receive_mode = receive_mode_name(i) 
+               class_name   = @receive_mode == receive_mode ? "current" : ""
+			%>
+			<% content_tag :li,  :class => class_name, :onclick => "$('receive_mode').value = '#{receive_mode}'; " do %>
+				<a href="#"><%= receive_mode %></a>
+			<% end -%>
+		<% end -%>
+	</ul>
+</div>

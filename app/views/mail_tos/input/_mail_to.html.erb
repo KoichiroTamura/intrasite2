@@ -1,0 +1,9 @@
+<% # entity of user_info selection for new and edit form template -%>
+<% # locals 
+   #   prefix  : prefix for association of user_infos
+   #   assoc_name : name of association
+   #   options :  :aff_root, :sta_root => each root, out_of_selection_for_aff & sta
+%>
+
+
+<%= render_assoc_target_to_put mail_to, prefix, assoc_name, options %>

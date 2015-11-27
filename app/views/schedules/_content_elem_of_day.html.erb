@@ -1,0 +1,27 @@
+<% # element of "day_calendar" 
+   # locals 
+   #   schedule     : schedule article
+   #   index        : for schedule overlapping
+   #   convert_rate : px ratio to minute
+ start_datetime, end_datetime = schedule.start_datetime.to_datetime, schedule.end_datetime.to_datetime
+%>
+
+
+<% unless schedule.attribute_present?(:banner_run_id) || all_day_long?(schedule) -%>
+	<%     start_portion = (start_datetime - start_datetime.beginning_of_day) * 24 * 60  # minutes
+		   span_portion  = (end_datetime -   start_datetime) * 24 * 60                   # minutes
+		   top    = (start_portion  * convert_rate).to_i.to_s + "px"
+		   height = ((span_portion * convert_rate).to_i - 6).to_s + "px"
+     %>
+		   
+	<div class="tg-gutter"> 
+	    <% # <!-- position:relativeが設定されているのでtopを開始時間に合わせて指定 --> %>
+		<div class="chip" style="top: <%= top %>; right: <%= index*10 %>% > left: 0%; width: 100%; z-index: <%= index %>" >
+		    <% # <!-- 範囲をheightで指定 --> %>
+			<dl style="height: <%= height %>; " class="gray_light pointer"  <%= remote_call_for_schedule_detail(schedule) %>>
+				<dt><%= render_time_of_schedule(schedule) %></dt>
+				<dd><span><%= schedule.title %></span></dd>
+			</dl>
+		</div>
+	</div>
+<% end %>

@@ -1,0 +1,89 @@
+<% # day calendar %>
+
+
+
+<div class = "op-control">
+	<ul>
+		<%= render :partial => "buttons_to_move_schedule"%>
+		
+		<li class = "title">
+			<%= @display_time.year %>年
+			<%= @display_time.month %>月
+			<%= @display_time.day %>日
+			（<%= day_of_week_name(@display_time.wday) %>）
+		</li>
+	</ul>
+</div>
+<br /><% # necessary for Firefox %>
+<%= render :partial => "header_for_day", :collection => @schedules %>
+
+<div id="schedule_table"  class="op-body">
+	<div id="gridcontainer">
+		<table class="wk-weektop">
+			<tbody>
+				<tr class="wk-daynames">
+					<td rowspan="3" style="width: 53px; font-size:12px;">終日</td>
+					<td></td>					
+					<th rowspan="3" style="width: 10px;" >&nbsp;</th>
+				</tr>
+
+				<tr>
+					<td colspan="7" >
+						<div class="wk-allday-pos">
+							<table class="st-bg-all">
+								<tbody>
+									<tr>											
+										<td class="st-bg" style="background: <%=current_day_color(@schedules.first.first)%>">&nbsp;</td>										
+									</tr>
+								</tbody>
+							</table>
+							<table class="st-grid">
+								<tbody>
+									<tr>
+						                <%= render :partial => "all_day_long_schedule", 
+                                                   :collection => all_day_long_schedules(@schedules, :day) %>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							
+	<!-- ディスプレイの解像度に合わせてheightを設定し、スクロールで表示する -->
+	<div class="wk-scrolltimedevents" id="scrolltimedeventswk" style="height: 537px;">
+		<div class="tg-mainwrapper">
+			<table class="tg-timedevents" id="tgTable">
+				<tbody>
+					<tr>
+						<!-- 時間表示箇所の横幅を指定 -->
+						<td style="width: 60px;"></td>
+						<!-- 横線を描画する -->
+						<td>
+							<div class="tg-hourmarkers">
+								<% 24.times do %>
+									<div class="tg-dualmarker"></div>
+								<% end -%>
+							</div>
+						</td>
+					</tr>
+
+					<tr>
+						<!-- 時間表示 -->
+						<td class="tg-times-pri">
+							<% for i in (0..23) do -%>
+								<% time = i < 10 ? "0#{i}" : i.to_s %>							
+								<div class="tg-time-pri"><%= "#{time}:00" %></div>							
+							<% end -%>
+						</td>						
+						<!-- １日の中の予定を表示する箇所  -->						
+						<%= render :partial => "day_elem_of_week", :collection => @schedules %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>	

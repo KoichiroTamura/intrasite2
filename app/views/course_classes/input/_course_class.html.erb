@@ -1,0 +1,10 @@
+<% # render input of course_classes association of courses %>
+<% # locals 
+   #   prefix  : prefix for association of course_classes
+   #   assoc_name : name of association
+   #   options :  :aff_root, :sta_root => root, out_of_selection_for_aff & sta
+%>
+
+<%  options[:assoc_target_body_template] ||= "#{options[:collection_name]}/input/assoc_target_body" %>
+
+<%= render_assoc_target_to_put course_class, prefix, assoc_name, options %>

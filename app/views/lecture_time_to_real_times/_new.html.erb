@@ -1,0 +1,12 @@
+<% # lecture_time_to_real_time new form %>
+
+<% new_record = @lecture_time_to_real_time.new_record? %>
+
+<h3 class="title"><%= new_record ? "時限実時間変新規換作成" : "時限実時間修正" %></h3>
+
+<br />
+   
+<% universal_remote_form_for @lecture_time_to_real_time do |form| %>
+	  <%= render_form_items form, @def_form_items, @form_items %>
+	  <%= submit_tag '実行する' %>
+<% end %>

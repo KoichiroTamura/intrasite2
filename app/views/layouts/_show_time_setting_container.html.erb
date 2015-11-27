@@ -1,0 +1,23 @@
+<% #-------------------------------------------------------------------	#
+# ---------------------------------------------------------------------	#
+# 【ファイル概要】container of show_time_setting					#
+# 【目的役割】表示日時選択タグを表示					#
+#     日時を変更した場合，:show_time_baseを変更
+#       session[:show_time_base] と　menu_clustersを書き換える．
+#     変更しない場合，show_timeは「現在」，session[:show_time_base]はnil
+# ［作成履歴］並松作成のcorner向けの初期バージョンを田村変更　2009/08/16               #
+#  　　　　大幅改訂　2009/09/17　田村
+#        大幅改訂　2010/03/22　田村　show_timeがshow_time_rateの倍速で変化する設定．
+#        改訂　2010/03/23　田村　periodical callは問題山積なので，当面見合わせる．
+# ---------------------------------------------------------------------	# %>
+
+<% content_tag "div", :id => "show_time_setting"  do %>
+	<%= render :partial => "layouts/show_time_setting" %>
+<% end -%>
+
+<% # periodically_call_remote :url => {:action => "show_show_time"},  :frequency => 60, :update => "show_show_time" %>
+
+<%#= observe_form "set_show_time_base",
+                 :url    => {:controller => "corners", :action => "set_show_time_setting"},
+                 :frequency => 0.5
+ %>

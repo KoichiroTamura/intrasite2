@@ -1,0 +1,10 @@
+<% # radio button answer %>
+    <% radio_name = random_id() %>
+	<%  i = 0 %>	  
+	<% options.each do |option|%>
+	  <% i += 1 %>
+	  <%= radio_button_tag radio_name, i, i == choiced, :disabled => true %><%= option %>
+	<% end%>
+	<% if correct_answer %>
+		（正解：<%= correct_answer %>）
+	<% end %>

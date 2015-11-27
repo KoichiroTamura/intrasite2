@@ -1,0 +1,29 @@
+<% # index page for exercises %>
+
+
+<%
+
+#［BODYスタイル設定］
+@body_style = "defaults"
+%>
+
+<div id="exercises">
+
+<div class="exercise_search_form">
+  <form id = "search" >
+	<%= render :partial => 'shared/select_academic_year' %>
+	<%= render :partial => "shared/select_season" %>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<%= radio_button_tag "all_or_related", "related", @all_or_related == "related" %>関連授業からの出題のみ
+	<%= local_information @related_lec_local_info %>
+	&nbsp;&nbsp;
+	<%= radio_button_tag "all_or_related", "all", @all_or_related == "all" %>すべて&nbsp;&nbsp;&nbsp;&nbsp;表示
+	<%= hidden_field_tag "lecture", @lecture %>
+  </form>
+</div>
+
+<%= observe_search %>
+<br /><br />			 
+<%= render_collection %>
+
+</div>

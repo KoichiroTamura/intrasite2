@@ -1,0 +1,22 @@
+<% # for selection of existing values added by inputting new option value
+   # locals ...
+   #   form, method, options(not select options), html_options
+%>
+
+<%
+  new_option = "新選択肢追加　→→→　"
+  entity = form.object
+  selected = (sel = entity.send(method)) ? sel : nil
+  select_options = [new_option] +
+                   entity.existing_values_of_attribute(method) - [""]
+  options ||= {}; options.merge! :disabled => new_option
+  html_options ||= {}; html_options.merge! :id => "__dummy__", :name => "__dummy__",
+         :onchange => "if (this.value == '#{new_option}') this.next().show(); else {this.next(1).value = this.value; this.next().hide();}"
+%>
+
+<%= form.select method, options_for_select(select_options, selected), options, html_options%>
+
+<% display_type = selected ? "none" : "block" %>
+<%= form.text_field method, :style => "display: #{display_type}", :id => "__dummy__", :name => "__dummy__", :onchange => "this.next().value = this.value" %>
+
+<%= form.hidden_field method %>
