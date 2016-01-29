@@ -2,7 +2,7 @@
 
 IntraSite2 is an intra-community website system built on the framework Ruby on Rails 2. Its purpose is to activate  articulate communication among the members of a university department, but has so many  built-in functions useful  for general intra-community communication that small effort of modification would make it to work for any communities including even big business companies. The system includes a new framework called Running Ruby of Rails(RRR) which is an advanced extension of the Ruby on Rails with some novel and useful features. Thus, IntraSite2 is actually one example of websites built on the framework RRR.
 
-# RRR features
+## RRR features
 
 Main features of the RRR are:
 
@@ -12,7 +12,7 @@ Main features of the RRR are:
 
 * A_Net description system by which associations among objects can be generally defined as  network expressions. Complicated multiple stage association of objects and events in the real world is very popular, so the accurate modeling of the real world definitely needs this kind of function.An A_Net expression is automatically converted to SQL table join (including out join) structures. The A_Net description system helps not only complex finding but also creating and updating any composit of modeled objects. This feature saves a lot of the labor of programmers and their errors. Practically, IntraSite2 programming has ever required  no SQL programming.
 
-# License
+## License
 
 Copyright (c) 2015, Koichiro Tamura/Toshinari Naminatsu/Yuki Ishikawa/Tatsuya Onishi/Mamoru Endo/Kenji Suzuki
 All rights reserved.
